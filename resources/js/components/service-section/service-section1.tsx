@@ -20,7 +20,7 @@ const services = [
     },
 ];
 
-export default function LayananSection() {
+export default function ServiceSectionV1() {
     return (
         <section className="relative my-12 w-full bg-white">
             <div className="mx-auto max-w-7xl px-6 text-center">
