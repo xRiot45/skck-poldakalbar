@@ -40,7 +40,7 @@ const NavbarV3 = () => {
             initial={{ y: -40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
-            className={`fixed top-0 left-0 z-50 w-full transition-colors duration-300 ${
+            className={`fixed top-0 left-0 z-50 w-full py-2 transition-colors duration-300 ${
                 isScrolled ? 'border-b border-border bg-background/80 backdrop-blur-xl' : 'bg-transparent'
             }`}
         >
@@ -50,9 +50,7 @@ const NavbarV3 = () => {
                     <img src={LogoIcon} alt="Logo" className="h-12" />
                     <div>
                         <h1 className={`text-sm font-bold tracking-wide uppercase ${menuColor}`}>Direktorat Intelijen Keamanan</h1>
-                        <span className={`font-bold uppercase ${!isDarkMode && !isScrolled ? 'text-white/80' : 'text-muted-foreground'}`}>
-                            Polda Kalbar
-                        </span>
+                        <span className={`font-bold uppercase ${!isDarkMode && !isScrolled ? 'text-white' : 'text-black'}`}>Polda Kalbar</span>
                     </div>
                 </div>
 
