@@ -44,7 +44,7 @@ export default function StatisticSectionV3() {
                     viewport={{ once: true }}
                     className="space-y-4"
                 >
-                    <h2 className="text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">Statistik & Pencapaian Kami</h2>
+                    <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">Statistik & Pencapaian Kami</h1>
                     <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300">
                         Ditintelkam Polda Kalbar selalu berinovasi untuk memberikan pelayanan terbaik kepada masyarakat dengan teknologi modern dan
                         transparansi data yang akurat.
