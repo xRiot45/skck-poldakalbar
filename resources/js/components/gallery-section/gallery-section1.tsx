@@ -31,7 +31,7 @@ export const galleryItems = [
     },
 ];
 
-export default function GallerySection() {
+export default function GallerySectionV1() {
     return (
         <section className="relative w-full bg-white py-20">
             <div className="mx-auto max-w-7xl px-4">

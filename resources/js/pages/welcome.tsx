@@ -1,7 +1,7 @@
 import { Footer } from '@/components/footer';
-import GallerySection from '@/components/galeri-section';
+import GallerySectionV3 from '@/components/gallery-section/gallery-section3';
 import HeroSectionV3 from '@/components/hero-section/hero-section3';
-import NavbarV3 from '@/components/navbar/navbar3';
+import NavbarV2 from '@/components/navbar/navbar2';
 import NewsSection from '@/components/news-section';
 import ServiceSectionV2 from '@/components/service-section/service-section2';
 import StatisticSectionV3 from '@/components/statistic-section/statistic-section3';
@@ -10,12 +10,12 @@ import VideoSectionV3 from '@/components/video-section/video-section3';
 export default function Welcome() {
     return (
         <>
-            <NavbarV3 />
+            <NavbarV2 />
             <HeroSectionV3 />
             <ServiceSectionV2 />
             <StatisticSectionV3 />
             <VideoSectionV3 />
-            <GallerySection />
+            <GallerySectionV3 />
             <NewsSection />
             <Footer />
         </>
