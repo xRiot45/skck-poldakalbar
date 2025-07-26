@@ -31,7 +31,7 @@ const youtubeVideos = [
     },
 ];
 
-export default function VideoSection() {
+export default function VideoSectionV1() {
     const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
 
     return (

@@ -36,9 +36,9 @@ export default function ServiceSectionV2() {
                     viewport={{ once: true }}
                     className="order-1 flex-1 text-center md:order-none md:text-left"
                 >
-                    <h2 className="text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-                        Pelayanan Yang
-                        <span className="block bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">Kami Berikan</span>
+                    <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+                        Pelayanan Yang <br />
+                        <span className="bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">Kami Berikan</span>
                     </h2>
                     <p className="text-md mt-6 max-w-lg leading-8 text-gray-600 dark:text-gray-300">
                         Kami menyediakan layanan digital modern yang memudahkan masyarakat Kalimantan Barat untuk membuat SKCK, Izin Keramaian, dan

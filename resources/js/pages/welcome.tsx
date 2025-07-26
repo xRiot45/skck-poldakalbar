@@ -5,7 +5,7 @@ import NavbarV3 from '@/components/navbar/navbar3';
 import NewsSection from '@/components/news-section';
 import ServiceSectionV2 from '@/components/service-section/service-section2';
 import StatisticSectionV3 from '@/components/statistic-section/statistic-section3';
-import VideoSection from '@/components/video-section';
+import VideoSectionV3 from '@/components/video-section/video-section3';
 
 export default function Welcome() {
     return (
@@ -14,7 +14,7 @@ export default function Welcome() {
             <HeroSectionV3 />
             <ServiceSectionV2 />
             <StatisticSectionV3 />
-            <VideoSection />
+            <VideoSectionV3 />
             <GallerySection />
             <NewsSection />
             <Footer />
