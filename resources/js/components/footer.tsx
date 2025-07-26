@@ -4,7 +4,7 @@ import { Link } from '@inertiajs/react';
 
 export function Footer() {
     return (
-        <footer className="mt-16 border-t bg-black text-white">
+        <footer className="border-t bg-black text-white">
             <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 py-12 lg:grid-cols-6">
                 {/* Logo dan deskripsi */}
                 <div className="col-span-2 space-y-4">
