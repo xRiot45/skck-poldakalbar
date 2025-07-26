@@ -102,7 +102,7 @@ export default function HeroSectionV3() {
                             className="flex cursor-pointer items-center gap-2 border-gray-300 py-6 text-gray-900 hover:bg-gray-100 dark:border-gray-600 dark:text-white dark:hover:bg-gray-700"
                         >
                             <Icon icon="mdi:whatsapp" className="h-5 w-5 text-green-600" />
-                            Hubungi Kami
+                            Hubungi Kami di WhatsApp
                         </Button>
                     </a>
                 </motion.div>

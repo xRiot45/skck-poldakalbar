@@ -26,7 +26,7 @@ const services = [
 
 export default function ServiceSectionV2() {
     return (
-        <section className="relative w-full overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50 py-24 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900">
+        <section className="relative w-full overflow-hidden py-24 dark:bg-gray-900/90 dark:text-white">
             <div className="mx-auto flex max-w-7xl flex-col items-center gap-20 px-6 md:flex-row">
                 {/* LEFT: Title + Illustration */}
                 <motion.div

@@ -2,7 +2,7 @@ import StatisticImg from '@/assets/images/statistic.png';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 
-export default function StatisticSection() {
+export default function StatisticSectionV1() {
     const stats = [
         { value: '8000+', label: 'SKCK Terbit' },
         { value: '10+', label: 'Izin Keramaian' },

@@ -3,8 +3,8 @@ import GallerySection from '@/components/galeri-section';
 import HeroSectionV3 from '@/components/hero-section/hero-section3';
 import NavbarV3 from '@/components/navbar/navbar3';
 import NewsSection from '@/components/news-section';
-import ServiceSectionV3 from '@/components/service-section/service-section3';
-import StatisticSection from '@/components/statistic-section';
+import ServiceSectionV2 from '@/components/service-section/service-section2';
+import StatisticSectionV3 from '@/components/statistic-section/statistic-section3';
 import VideoSection from '@/components/video-section';
 
 export default function Welcome() {
@@ -12,8 +12,8 @@ export default function Welcome() {
         <>
             <NavbarV3 />
             <HeroSectionV3 />
-            <ServiceSectionV3 />
-            <StatisticSection />
+            <ServiceSectionV2 />
+            <StatisticSectionV3 />
             <VideoSection />
             <GallerySection />
             <NewsSection />

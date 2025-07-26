@@ -19,7 +19,7 @@ export default function ProsedurSKCKModal() {
                 <Button
                     size="lg"
                     variant="default"
-                    className="flex cursor-pointer items-center gap-2 bg-gradient-to-r from-blue-500 to-cyan-500 py-6 transition-all hover:bg-gradient-to-r hover:from-blue-600 hover:to-cyan-600"
+                    className="flex cursor-pointer items-center gap-2 bg-gradient-to-r from-blue-500 to-cyan-500 py-6 text-white transition-all hover:bg-gradient-to-r hover:from-blue-600 hover:to-cyan-600"
                 >
                     <Icon icon="mdi:file-document-outline" className="h-5 w-5" />
                     Lihat Prosedur SKCK
