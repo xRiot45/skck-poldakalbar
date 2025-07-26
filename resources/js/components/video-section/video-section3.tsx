@@ -69,7 +69,7 @@ export default function VideoSectionV3() {
                 </motion.div>
 
                 {/* Layout: Featured video + list */}
-                <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+                <div className="grid grid-cols-1 gap-0 space-y-4 md:space-y-0 lg:grid-cols-3 lg:gap-6">
                     {/* Featured Video */}
                     <Dialog>
                         <DialogTrigger asChild>
