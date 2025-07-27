@@ -16,7 +16,7 @@ Route::get('/profil', function () {
 })->name('profil');
 
 Route::get('/skck', function () {
-    return Inertia::render('skck');
+    return Inertia::render('skck/skck3');
 })->name('skck');
 
 Route::get('/kontak', function () {
