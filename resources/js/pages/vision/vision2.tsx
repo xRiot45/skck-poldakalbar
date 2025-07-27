@@ -82,7 +82,7 @@ export default function VisiMisiV2() {
                                 <CardTitle className="text-3xl font-bold">Misi</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <ul className="list-inside list-decimal space-y-2">
+                                <ul className="list-inside list-disc space-y-2">
                                     {misiItems.map((item, idx) => (
                                         <motion.li
                                             key={idx}
