@@ -1,4 +1,4 @@
-import Navbar from '@/components/navbar';
+import NavbarV3 from '@/components/navbar/navbar3';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function Visi() {
@@ -18,7 +18,7 @@ export default function Visi() {
 
     return (
         <>
-            <Navbar />
+            <NavbarV3 />
             <section className="min-h-screen bg-gradient-to-b from-gray-950 via-black to-gray-900 text-white">
                 {/* Hero Section */}
                 <div className="relative py-20 text-center">

@@ -8,7 +8,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/visi', function () {
-    return Inertia::render('visi');
+    return Inertia::render('vision/vision2');
 })->name('visi');
 
 Route::get('/profil', function () {

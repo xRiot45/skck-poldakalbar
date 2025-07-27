@@ -26,7 +26,7 @@ export default function ProfilV3Plus() {
         <>
             <NavbarV3 />
 
-            <section className="bg-white text-gray-900 dark:bg-gray-950 dark:text-white">
+            <section className="bg-white text-gray-900 dark:bg-gray-900/90 dark:text-white">
                 {/* HERO - Banner Tetap Gelap */}
                 <div className="relative overflow-hidden bg-gray-950 text-white">
                     {/* Neon Glow Background */}
