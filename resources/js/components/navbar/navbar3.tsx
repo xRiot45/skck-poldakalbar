@@ -49,8 +49,10 @@ const NavbarV3 = () => {
                 <div className="flex items-center gap-4">
                     <img src={LogoIcon} alt="Logo" className="h-12" />
                     <div>
-                        <h1 className={`text-sm font-bold tracking-wide uppercase ${menuColor}`}>Direktorat Intelijen Keamanan</h1>
-                        <span className={`font-bold uppercase ${!isDarkMode && !isScrolled ? 'text-white' : 'text-black'}`}>Polda Kalbar</span>
+                        <h1 className={`text-sm font-bold tracking-wide uppercase ${menuColor}`}>
+                            Direktorat Intelijen Keamanan <br />
+                            Polda Kalbar
+                        </h1>
                     </div>
                 </div>
 

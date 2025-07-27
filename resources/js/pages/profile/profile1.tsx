@@ -1,7 +1,7 @@
-import Navbar from '@/components/navbar';
+import NavbarV3 from '@/components/navbar/navbar3';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-export default function Profil() {
+export default function ProfileV1() {
     const tugas = [
         'Melakukan deteksi aksi intelijen berupa deteksi dini, peringatan dini dan/atau cegah dini dengan didukung teknologi intelijen dan persandian;',
         'Memberikan pelayanan administrasi dan pengawasan senjata api atau bahan peledak, orang asing, dan kegiatan sosial atau politik masyarakat sesuai ketentuan peraturan perundang-undangan;',
@@ -20,7 +20,7 @@ export default function Profil() {
 
     return (
         <>
-            <Navbar />
+            <NavbarV3 />
             <section className="min-h-screen bg-gradient-to-b from-gray-950 via-black to-gray-900 text-white">
                 {/* Hero Section */}
                 <div className="relative py-20 text-center">

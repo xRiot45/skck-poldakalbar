@@ -12,7 +12,7 @@ Route::get('/visi', function () {
 })->name('visi');
 
 Route::get('/profil', function () {
-    return Inertia::render('profil');
+    return Inertia::render('profile/profile3');
 })->name('profil');
 
 Route::get('/skck', function () {
