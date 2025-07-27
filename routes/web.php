@@ -24,8 +24,12 @@ Route::get('/berita', function () {
 })->name('berita');
 
 Route::get('/kontak', function () {
-    return Inertia::render('kontak');
-})->name('kontak');
+    return Inertia::render('contact/contact');
+})->name('contact');
+
+Route::get('/galeri', function () {
+    return Inertia::render('gallery/gallery');
+})->name('galeri');
 
 
 Route::middleware(['auth', 'verified'])->group(function () {

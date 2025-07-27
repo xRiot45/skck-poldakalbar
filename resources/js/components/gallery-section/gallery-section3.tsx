@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Icon } from '@iconify/react';
+import { Link } from '@inertiajs/react';
 import { motion } from 'framer-motion';
 import * as React from 'react';
 
@@ -129,10 +130,12 @@ export default function GallerySectionV3() {
 
                 {/* Tombol Lihat Semua */}
                 <div className="mt-10 text-center">
-                    <Button className="rounded-md bg-gradient-to-r from-blue-500 to-cyan-500 px-6 py-5 text-white hover:from-blue-600 hover:to-cyan-600">
-                        <Icon icon="mdi:image-multiple-outline" className="mr-2 h-5 w-5" />
-                        Lihat Semua Galeri
-                    </Button>
+                    <Link href="/galeri">
+                        <Button className="rounded-md bg-gradient-to-r from-blue-500 to-cyan-500 px-6 py-5 text-white hover:from-blue-600 hover:to-cyan-600">
+                            <Icon icon="mdi:image-multiple-outline" className="mr-2 h-5 w-5" />
+                            Lihat Semua Galeri
+                        </Button>
+                    </Link>
                 </div>
             </div>
 
