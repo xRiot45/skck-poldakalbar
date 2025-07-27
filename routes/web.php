@@ -19,6 +19,10 @@ Route::get('/skck', function () {
     return Inertia::render('skck/skck3');
 })->name('skck');
 
+Route::get('/berita', function () {
+    return Inertia::render('news/news1');
+})->name('berita');
+
 Route::get('/kontak', function () {
     return Inertia::render('kontak');
 })->name('kontak');

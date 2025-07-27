@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Icon } from '@iconify/react';
+import { Link } from '@inertiajs/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 
@@ -140,27 +141,33 @@ export default function NewsSectionV3() {
                             {newsItems.map((news, index) => (
                                 <CarouselItem key={news.id} className="basis-1/2 cursor-pointer md:basis-1/4" onClick={() => setHighlight(news)}>
                                     <motion.div
+                                        key={news.id}
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: index * 0.1, duration: 0.4 }}
-                                        className={`relative h-full overflow-hidden rounded-xl border transition ${
-                                            highlight.id === news.id ? 'border-blue-500 shadow-lg' : 'border-gray-200 dark:border-gray-700'
-                                        }`}
+                                        className="group cursor-pointer overflow-hidden rounded-xl border border-gray-200 text-start transition dark:border-gray-700"
                                     >
-                                        {/* Gambar */}
                                         <div className="relative">
-                                            <img src={news.image} alt={news.title} className="h-40 w-full object-cover" />
-                                            {/* Overlay views */}
+                                            <img
+                                                src={news.image}
+                                                alt={news.title}
+                                                className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                            />
                                             <div className="absolute right-2 bottom-2 flex items-center gap-1 rounded-full bg-black/50 px-2 py-0.5 text-[10px] text-white backdrop-blur-sm">
                                                 <Icon icon="mdi:eye-outline" className="h-3 w-3" />
                                                 {news.views}
                                             </div>
+                                            {/* Badge kategori animasi */}
+                                            <span className="absolute top-2 left-2 rounded-full bg-blue-600 px-2 py-0.5 text-[10px] font-medium text-white shadow-md">
+                                                {news.category}
+                                            </span>
                                         </div>
-
-                                        {/* Konten */}
-                                        <div className="bg-white p-3 text-left dark:bg-gray-900">
-                                            <h4 className="line-clamp-2 text-sm font-semibold text-gray-900 dark:text-white">{news.title}</h4>
+                                        <div className="bg-white p-3 dark:bg-gray-900">
+                                            <Link href={`/berita/${news.id}`} className="block">
+                                                <h4 className="line-clamp-2 text-sm font-semibold text-gray-900 dark:text-white">{news.title}</h4>
+                                            </Link>
                                             <span className="mt-1 block text-xs text-gray-500 dark:text-gray-400">{news.date}</span>
+                                            <p className="mt-2 line-clamp-2 text-sm text-gray-500 dark:text-gray-400">{news.description}</p>
                                         </div>
                                     </motion.div>
                                 </CarouselItem>

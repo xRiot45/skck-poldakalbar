@@ -174,7 +174,7 @@ const NavbarV3 = () => {
                             {/* Berita */}
                             <NavigationMenuItem>
                                 <NavigationMenuLink
-                                    href="#"
+                                    href="/berita"
                                     className={`relative flex flex-row items-center gap-2 px-3 py-2 text-sm font-medium transition ${menuColor} hover:text-primary`}
                                 >
                                     <Icon icon="mdi:newspaper-variant-outline" className="h-4 w-4" />
