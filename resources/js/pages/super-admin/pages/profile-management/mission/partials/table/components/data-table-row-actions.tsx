@@ -18,19 +18,19 @@ import {
     DropdownMenuShortcut,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Vision } from '@/models/profile-management/vision';
+import { Mission } from '@/models/profile-management/mission';
 import { Icon } from '@iconify/react';
 import { Link, router } from '@inertiajs/react';
 import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 import { Row } from '@tanstack/react-table';
 import { toast } from 'sonner';
 
-export function DataTableRowActions({ row }: { row: Row<Vision> }) {
+export function DataTableRowActions({ row }: { row: Row<Mission> }) {
     const handleDelete = (id: number) => {
-        router.delete(route('super-admin.vision.destroy', { id }), {
+        router.delete(route('super-admin.mission.destroy', { id }), {
             onSuccess: () => {
                 toast.success('Success', {
-                    description: 'Visi Berhasil Dihapus!',
+                    description: 'Misi Berhasil Dihapus!',
                     action: {
                         label: 'Tutup',
                         onClick: () => toast.dismiss(),
@@ -50,7 +50,7 @@ export function DataTableRowActions({ row }: { row: Row<Vision> }) {
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-[260px]">
-                    <Link href={route('super-admin.vision.edit', { id: row.original.id })} className="cursor-pointer">
+                    <Link href={route('super-admin.mission.edit', { id: row.original.id })} className="cursor-pointer">
                         <DropdownMenuItem className="cursor-pointer p-3">
                             Edit Data
                             <DropdownMenuShortcut>

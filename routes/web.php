@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\VisionController;
 use Illuminate\Support\Facades\Route;
@@ -73,6 +74,18 @@ Route::middleware(['auth', 'verified', 'role:super-admin'])->group(function () {
                 Route::get('/edit/{vision}', 'edit')->name('super-admin.vision.edit');
                 Route::put('/edit/{vision}', 'update')->name('super-admin.vision.update');
                 Route::delete('/delete/{vision}', 'destroy')->name('super-admin.vision.destroy');
+            });
+
+        // Mission
+        Route::prefix('/mission')
+            ->controller(MissionController::class)
+            ->group(function () {
+                Route::get('/', 'indexSuperAdmin')->name('super-admin.mission.index');
+                Route::get('/create', 'create')->name('super-admin.mission.create');
+                Route::post('/create', 'store')->name('super-admin.mission.store');
+                Route::get('/edit/{mission}', 'edit')->name('super-admin.mission.edit');
+                Route::put('/edit/{mission}', 'update')->name('super-admin.mission.update');
+                Route::delete('/delete/{mission}', 'destroy')->name('super-admin.mission.destroy');
             });
     });
 });
