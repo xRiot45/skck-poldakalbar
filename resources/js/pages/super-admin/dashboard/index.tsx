@@ -1,4 +1,4 @@
-import AdminLayout from '@/layouts/admin';
+import SuperAdminLayout from '@/layouts/super-admin';
 import { BreadcrumbItem } from '@/types';
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -10,10 +10,10 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 export default function DashboardSuperAdmin() {
     return (
-        <AdminLayout breadcrumbs={breadcrumbs}>
+        <SuperAdminLayout breadcrumbs={breadcrumbs}>
             <main className="p-6">
                 <h1>Dashboard Admin</h1>
             </main>
-        </AdminLayout>
+        </SuperAdminLayout>
     );
 }

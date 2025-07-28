@@ -1,5 +1,5 @@
 import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
-import AdminLayout from '@/layouts/admin';
+import AdminLayout from '@/layouts/super-admin';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 
