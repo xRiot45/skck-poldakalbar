@@ -18,12 +18,10 @@ export const columns: ColumnDef<Vision>[] = [
         enableHiding: false,
     },
     {
-        id: 'name',
-        accessorKey: 'name',
+        id: 'title',
+        accessorKey: 'title',
         header: ({ column }) => <DataTableColumnHeader column={column} title="Nama Visi" />,
-        cell: ({ row }) => <span className="max-w-36">{row.getValue('name')}</span>,
-        enableHiding: true,
-        enableSorting: true,
+        cell: ({ row }) => <div className="max-w-[300px] break-words whitespace-normal">{row.getValue('title')}</div>,
     },
     {
         id: 'created_at',
