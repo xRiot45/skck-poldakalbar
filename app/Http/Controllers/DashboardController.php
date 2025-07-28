@@ -9,6 +9,6 @@ class DashboardController extends Controller
 {
     public function indexSuperAdmin(): InertiaResponse
     {
-        return Inertia::render('super-admin/dashboard/index');
+        return Inertia::render('super-admin/pages/dashboard/index');
     }
 }

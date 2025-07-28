@@ -7,8 +7,14 @@ import { motion } from 'framer-motion';
 export default function SkckV3() {
     const steps = [
         {
+            title: 'Daftar Online',
+            desc: 'Mendaftar melalui Super Apps POLRI untuk mengisi data pemohon.',
+            icon: 'mdi:account-plus',
+            color: 'from-cyan-400 to-blue-500',
+        },
+        {
             title: 'Lengkapi Persyaratan',
-            desc: 'Siapkan dokumen KTP, KK, Akta/Ijazah, Pas Foto, dan bukti kepesertaan JKN.',
+            desc: 'Siapkan dokumen KTP, KK, Akta/Ijazah, Pas Foto 4x6 5 Lembar, dan bukti kepesertaan JKN.',
             icon: 'mdi:clipboard-check',
             color: 'from-pink-500 to-red-500',
         },
