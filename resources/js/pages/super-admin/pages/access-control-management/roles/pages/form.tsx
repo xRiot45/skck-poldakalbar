@@ -2,9 +2,9 @@ import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import AdminLayout from '@/layouts/admin/layout';
+import SuperAdminLayout from '@/layouts/super-admin';
 import { cn } from '@/lib/utils';
-import { Role, RoleForm } from '@/models/role';
+import { Role, RoleForm } from '@/models/access-control-management/role';
 import { BreadcrumbItem } from '@/types';
 import { Icon } from '@iconify/react';
 import { Head, Link, useForm } from '@inertiajs/react';
@@ -19,7 +19,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
     {
         title: 'Roles / Peran',
-        href: '/admin/manajemen-kontrol-akses/roles',
+        href: '/super-admin/access-control-management/roles',
     },
     {
         title: 'Form Role / Peran',
@@ -37,7 +37,7 @@ export default function FormPage({ role }: { role: Role }) {
         e.preventDefault();
 
         if (isEdit) {
-            put(route('admin.roles.update', { id: role?.id }), {
+            put(route('super-admin.roles.update', { id: role?.id }), {
                 onSuccess: () => {
                     toast.success('Success', {
                         description: 'Role Berhasil Diedit!',
@@ -61,7 +61,7 @@ export default function FormPage({ role }: { role: Role }) {
                 },
             });
         } else {
-            post(route('admin.roles.store'), {
+            post(route('super-admin.roles.store'), {
                 onSuccess: () => {
                     reset('name');
                     toast.success('Success', {
@@ -88,7 +88,7 @@ export default function FormPage({ role }: { role: Role }) {
     };
 
     return (
-        <AdminLayout breadcrumbs={breadcrumbs}>
+        <SuperAdminLayout breadcrumbs={breadcrumbs}>
             <Head title="Tambah Role" />
             <form onSubmit={handleSubmit} className="p-4">
                 <Label htmlFor="name">Nama Role / Peran</Label>
@@ -106,17 +106,17 @@ export default function FormPage({ role }: { role: Role }) {
                 <InputError message={errors.name} className="mt-2" />
 
                 <div className="mt-4 flex justify-end space-x-3">
-                    <Link href={route('admin.roles.index')}>
+                    <Link href={route('super-admin.roles.index')}>
                         <Button variant="destructive" className="cursor-pointer">
                             Batalkan <Icon icon="iconoir:cancel" />
                         </Button>
                     </Link>
                     <Button type="submit" tabIndex={4} disabled={processing} className="cursor-pointer">
                         {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
-                        Edit Data <Icon icon="heroicons:check" />
+                        {isEdit ? 'Edit Role' : 'Tambah Role'} <Icon icon={isEdit ? 'material-symbols:edit' : 'heroicons:plus'} />
                     </Button>
                 </div>
             </form>
-        </AdminLayout>
+        </SuperAdminLayout>
     );
 }

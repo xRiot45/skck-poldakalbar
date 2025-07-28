@@ -27,7 +27,7 @@ import { toast } from 'sonner';
 
 export function DataTableRowActions({ row }: { row: Row<Role> }) {
     const handleDelete = (id: number) => {
-        router.delete(route('admin.roles.destroy', { id }), {
+        router.delete(route('super-admin.roles.destroy', { id }), {
             onSuccess: () => {
                 toast('Success', {
                     description: 'Role Berhasil Dihapus!',
@@ -43,15 +43,15 @@ export function DataTableRowActions({ row }: { row: Row<Role> }) {
     return (
         <>
             <DropdownMenu>
-                <DropdownMenuTrigger>
+                <DropdownMenuTrigger asChild>
                     <Button variant="ghost" className="flex h-8 w-8 p-0 data-[state=open]:bg-muted">
                         <DotsHorizontalIcon className="h-4 w-4" />
                         <span className="sr-only">Open menu</span>
                     </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-[160px]">
-                    <Link href={route('super-admin.roles.edit', { id: row.original.id })} className="cursor-po">
-                        <DropdownMenuItem className="cursor-pointer">
+                <DropdownMenuContent align="end" className="w-[260px] p-4">
+                    <Link href={route('super-admin.roles.edit', { id: row.original.id })} className="cursor-pointer">
+                        <DropdownMenuItem className="cursor-pointer p-3">
                             Edit Data
                             <DropdownMenuShortcut>
                                 <Icon icon={'material-symbols:edit'} />
@@ -61,7 +61,7 @@ export function DataTableRowActions({ row }: { row: Row<Role> }) {
                     <DropdownMenuSeparator />
                     <AlertDialog>
                         <AlertDialogTrigger asChild>
-                            <DropdownMenuItem className="cursor-pointer !text-red-500" onSelect={(e) => e.preventDefault()}>
+                            <DropdownMenuItem className="cursor-pointer p-3 !text-red-500" onSelect={(e) => e.preventDefault()}>
                                 Hapus Data
                                 <DropdownMenuShortcut>
                                     <Icon icon={'material-symbols:delete'} className="!text-red-500" />
