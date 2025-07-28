@@ -18,7 +18,7 @@ import {
     DropdownMenuShortcut,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Role } from '@/models/role';
+import { Role } from '@/models/access-control-management/role';
 import { Icon } from '@iconify/react';
 import { Link, router } from '@inertiajs/react';
 import { DotsHorizontalIcon } from '@radix-ui/react-icons';
@@ -44,13 +44,13 @@ export function DataTableRowActions({ row }: { row: Row<Role> }) {
         <>
             <DropdownMenu>
                 <DropdownMenuTrigger>
-                    <Button variant="ghost" className="data-[state=open]:bg-muted flex h-8 w-8 p-0">
+                    <Button variant="ghost" className="flex h-8 w-8 p-0 data-[state=open]:bg-muted">
                         <DotsHorizontalIcon className="h-4 w-4" />
                         <span className="sr-only">Open menu</span>
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-[160px]">
-                    <Link href={route('admin.roles.edit', { id: row.original.id })} className="cursor-po">
+                    <Link href={route('super-admin.roles.edit', { id: row.original.id })} className="cursor-po">
                         <DropdownMenuItem className="cursor-pointer">
                             Edit Data
                             <DropdownMenuShortcut>

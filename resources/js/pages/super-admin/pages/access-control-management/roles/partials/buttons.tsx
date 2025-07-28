@@ -9,7 +9,7 @@ export default function ButtonPartials() {
                 <span>Refresh Halaman</span>
                 <Icon icon={'material-symbols:refresh'} className="text-background" />
             </Button>
-            <Link href={route('admin.roles.create')}>
+            <Link href={route('super-admin.roles.create')}>
                 <Button className="cursor-pointer">
                     <span>Tambah Role</span> <Icon icon={'heroicons:plus'} className="text-background" />
                 </Button>

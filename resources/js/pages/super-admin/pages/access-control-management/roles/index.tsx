@@ -7,7 +7,7 @@ import RoleTable from './partials/table';
 import { columns } from './partials/table/columns';
 
 interface RolePageProps {
-    data: Role[];
+    roles: Role[];
 }
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -21,7 +21,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function RolePage({ data }: RolePageProps) {
+export default function RolePage({ roles }: RolePageProps) {
     return (
         <>
             <SuperAdminLayout breadcrumbs={breadcrumbs}>
@@ -35,7 +35,7 @@ export default function RolePage({ data }: RolePageProps) {
                 </div>
 
                 <div className="p-4">
-                    <RoleTable data={data} columns={columns} />
+                    <RoleTable data={roles} columns={columns} />
                 </div>
             </SuperAdminLayout>
         </>
