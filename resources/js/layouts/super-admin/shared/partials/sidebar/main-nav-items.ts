@@ -19,16 +19,16 @@ const mainNavItems: NavGroup[] = [
                 href: '/super-admin/access-control-management/roles',
                 icon: 'eos-icons:role-binding',
             },
-            {
-                title: 'Permissions / Izin',
-                href: '/super-admin/access-control-management/permissions',
-                icon: 'material-symbols:security',
-            },
-            {
-                title: 'Kelola Izin Peran',
-                href: '/super-admin/access-control-management/manage-role-permissions',
-                icon: 'material-symbols:manage-accounts-outline-rounded',
-            },
+            // {
+            //     title: 'Permissions / Izin',
+            //     href: '/super-admin/access-control-management/permissions',
+            //     icon: 'material-symbols:security',
+            // },
+            // {
+            //     title: 'Kelola Izin Peran',
+            //     href: '/super-admin/access-control-management/manage-role-permissions',
+            //     icon: 'material-symbols:manage-accounts-outline-rounded',
+            // },
         ],
     },
     {
