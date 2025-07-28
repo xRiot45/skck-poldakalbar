@@ -1,8 +1,10 @@
-import { LucideIcon } from 'lucide-react';
+import { Courier } from '@/models/courier';
+import { Customer } from '@/models/customer';
 import type { Config } from 'ziggy-js';
 
 export interface Auth {
     user: User;
+    courier: Courier;
 }
 
 export interface BreadcrumbItem {
@@ -11,15 +13,16 @@ export interface BreadcrumbItem {
 }
 
 export interface NavGroup {
-    title: string;
+    group: string;
     items: NavItem[];
 }
 
 export interface NavItem {
     title: string;
     href: string;
-    icon?: LucideIcon | null;
+    icon: string;
     isActive?: boolean;
+    submenu?: NavItem[];
 }
 
 export interface SharedData {
@@ -27,17 +30,23 @@ export interface SharedData {
     quote: { message: string; author: string };
     auth: Auth;
     ziggy: Config & { location: string };
-    sidebarOpen: boolean;
     [key: string]: unknown;
 }
 
 export interface User {
     id: number;
-    name: string;
+    full_name: string;
     email: string;
-    avatar?: string;
     email_verified_at: string | null;
+    phone_number: string;
     created_at: string;
     updated_at: string;
-    [key: string]: unknown; // This allows for additional properties...
+    customer?: Customer;
+    courier?: Courier;
+    roles: string[];
+    [key: string]: unknown;
+}
+
+export interface FlashMessage {
+    message?: string;
 }
