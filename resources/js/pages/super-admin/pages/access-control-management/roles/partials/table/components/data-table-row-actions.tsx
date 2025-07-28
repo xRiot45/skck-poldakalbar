@@ -49,7 +49,7 @@ export function DataTableRowActions({ row }: { row: Row<Role> }) {
                         <span className="sr-only">Open menu</span>
                     </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-[260px] p-4">
+                <DropdownMenuContent align="end" className="w-[260px]">
                     <Link href={route('super-admin.roles.edit', { id: row.original.id })} className="cursor-pointer">
                         <DropdownMenuItem className="cursor-pointer p-3">
                             Edit Data

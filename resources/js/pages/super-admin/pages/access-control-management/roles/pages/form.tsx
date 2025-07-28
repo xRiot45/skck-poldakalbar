@@ -91,7 +91,9 @@ export default function FormPage({ role }: { role: Role }) {
         <SuperAdminLayout breadcrumbs={breadcrumbs}>
             <Head title="Tambah Role" />
             <form onSubmit={handleSubmit} className="p-4">
-                <Label htmlFor="name">Nama Role / Peran</Label>
+                <Label htmlFor="name">
+                    Nama Role / Peran <span className="text-red-500">*</span>
+                </Label>
                 <Input
                     id="name"
                     type="text"
@@ -101,7 +103,7 @@ export default function FormPage({ role }: { role: Role }) {
                     value={data.name}
                     onChange={(e) => setData('name', e.target.value)}
                     placeholder="Masukkan nama role / peran"
-                    className={cn('mt-1 rounded-xl px-4 py-6', errors.name && 'border border-red-500')}
+                    className={cn('mt-2 rounded-md px-4 py-6', errors.name && 'border border-red-500')}
                 />
                 <InputError message={errors.name} className="mt-2" />
 
