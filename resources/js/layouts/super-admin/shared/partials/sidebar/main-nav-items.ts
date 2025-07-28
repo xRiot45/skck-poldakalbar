@@ -35,14 +35,24 @@ const mainNavItems: NavGroup[] = [
         group: 'MANAJEMEN PROFIL',
         items: [
             {
-                title: 'Visi dan Misi',
-                href: '/super-admin/manajemen-profil/vision-mission',
+                title: 'Visi',
+                href: '/super-admin/profile-management/vision',
                 icon: 'material-symbols:public',
             },
             {
-                title: 'Tugas dan Fungsi',
-                href: '/super-admin/manajemen-profil/tasks-functions',
+                title: 'Misi',
+                href: '/super-admin/profile-management/mission',
+                icon: 'material-symbols:flag',
+            },
+            {
+                title: 'Tugas',
+                href: '/super-admin/profile-management/tasks',
                 icon: 'material-symbols:assignment',
+            },
+            {
+                title: 'Fungsi',
+                href: '/super-admin/profile-management/functions',
+                icon: 'material-symbols:build',
             },
         ],
     },

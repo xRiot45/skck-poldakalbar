@@ -4,23 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Vision;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response as InertiaResponse;
 
 class VisionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function indexSuperAdmin(): InertiaResponse
     {
-        //
+        $visions = Vision::all();
+        return Inertia::render('super-admin/pages/profile-management/vision/index', [
+            'visions' => $visions,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+
+    public function create(): InertiaResponse
     {
-        //
+        return Inertia::render('super-admin/pages/profile-management/vision/pages/form');
     }
 
     /**

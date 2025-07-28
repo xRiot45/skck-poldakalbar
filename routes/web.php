@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\VisionController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -58,30 +59,21 @@ Route::middleware(['auth', 'verified', 'role:super-admin'])->group(function () {
                 Route::delete('/delete/{id}', 'destroy')->name('super-admin.roles.destroy');
                 Route::delete('/delete-all', 'destroy_all')->name('super-admin.roles.destroy_all');
             });
+    });
 
-        // // Permissions
-        // Route::prefix('/permissions')
-        //     ->controller(PermissionController::class)
-        //     ->group(function () {
-        //         Route::get('/', 'index')->name('admin.permissions.index');
-        //         Route::get('/create', 'create')->name('admin.permissions.create');
-        //         Route::post('/create', 'store')->name('admin.permissions.store');
-        //         Route::get('/edit/{id}', 'edit')->name('admin.permissions.edit');
-        //         Route::put('/edit/{id}', 'update')->name('admin.permissions.update');
-        //         Route::delete('/delete/{id}', 'destroy')->name('admin.permissions.destroy');
-        //         Route::delete('/delete-all', 'destroy_all')->name('admin.permissions.destroy_all');
-        //     });
-
-        // // Role Has Permissions
-        // Route::prefix('/manage-role-permissions')
-        //     ->controller(ManageRolePermissionController::class)
-        //     ->group(function () {
-        //         Route::get('/', 'index')->name('admin.manage-role-permission.index');
-        //         Route::get('/create', 'create')->name('admin.manage-role-permission.create');
-        //         Route::post('/create', 'store')->name('admin.manage-role-permission.store');
-        //         Route::get('/edit/{id}', 'edit')->name('admin.manage-role-permission.edit');
-        //         Route::put('/edit/{id}', 'update')->name('admin.manage-role-permission.update');
-        //     });
+    // Profile Management
+    Route::prefix('/super-admin/profile-management')->group(function () {
+        // Vision
+        Route::prefix('/vision')
+            ->controller(VisionController::class)
+            ->group(function () {
+                Route::get('/', 'indexSuperAdmin')->name('super-admin.vision.index');
+                Route::get('/create', 'create')->name('super-admin.vision.create');
+                Route::post('/create', 'store')->name('super-admin.vision.store');
+                Route::get('/edit/{vision}', 'edit')->name('super-admin.vision.edit');
+                Route::put('/edit/{vision}', 'update')->name('super-admin.vision.update');
+                Route::delete('/delete/{vision}', 'destroy')->name('super-admin.vision.destroy');
+            });
     });
 });
 

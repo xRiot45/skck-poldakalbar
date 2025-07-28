@@ -1,6 +1,6 @@
-export interface RoleForm {
+export type RoleForm = {
     name: string;
-}
+};
 
 export interface Role {
     id: number;
