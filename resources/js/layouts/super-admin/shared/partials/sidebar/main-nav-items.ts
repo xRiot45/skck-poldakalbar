@@ -16,17 +16,17 @@ const mainNavItems: NavGroup[] = [
         items: [
             {
                 title: 'Roles / Peran',
-                href: '/super-admin/manajemen-kontrol-akses/roles',
+                href: '/super-admin/access-control-management/roles',
                 icon: 'eos-icons:role-binding',
             },
             {
                 title: 'Permissions / Izin',
-                href: '/super-admin/manajemen-kontrol-akses/permissions',
+                href: '/super-admin/access-control-management/permissions',
                 icon: 'material-symbols:security',
             },
             {
                 title: 'Kelola Izin Peran',
-                href: '/super-admin/manajemen-kontrol-akses/manage-role-permissions',
+                href: '/super-admin/access-control-management/manage-role-permissions',
                 icon: 'material-symbols:manage-accounts-outline-rounded',
             },
         ],
