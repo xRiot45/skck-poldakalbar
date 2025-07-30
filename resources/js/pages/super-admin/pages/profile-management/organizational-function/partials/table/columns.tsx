@@ -20,7 +20,7 @@ export const columns: ColumnDef<OrganizationalFunction>[] = [
     {
         id: 'title',
         accessorKey: 'title',
-        header: ({ column }) => <DataTableColumnHeader column={column} title="Tugas" />,
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Fungsi" />,
         cell: ({ row }) => <div className="max-w-[300px] break-words whitespace-normal">{row.getValue('title')}</div>,
         enableSorting: false,
         enableHiding: false,

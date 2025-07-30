@@ -20,7 +20,7 @@ export const columns: ColumnDef<Mission>[] = [
     {
         id: 'title',
         accessorKey: 'title',
-        header: ({ column }) => <DataTableColumnHeader column={column} title="Visi" />,
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Misi" />,
         cell: ({ row }) => <div className="max-w-[300px] break-words whitespace-normal">{row.getValue('title')}</div>,
     },
     {
