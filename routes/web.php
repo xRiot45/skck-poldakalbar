@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MissionController;
+use App\Http\Controllers\OrganizationalFunctionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\VisionController;
+use App\Models\OrganizationalFunction;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -98,6 +100,18 @@ Route::middleware(['auth', 'verified', 'role:super-admin'])->group(function () {
                 Route::get('/edit/{task}', 'edit')->name('super-admin.task.edit');
                 Route::put('/edit/{task}', 'update')->name('super-admin.task.update');
                 Route::delete('/delete/{task}', 'destroy')->name('super-admin.task.destroy');
+            });
+
+        // Organizational Function
+        Route::prefix('/organizational-function')
+            ->controller(OrganizationalFunctionController::class)
+            ->group(function () {
+                Route::get('/', 'indexSuperAdmin')->name('super-admin.organizational-function.index');
+                Route::get('/create', 'create')->name('super-admin.organizational-function.create');
+                Route::post('/create', 'store')->name('super-admin.organizational-function.store');
+                Route::get('/edit/{organizational_function}', 'edit')->name('super-admin.organizational-function.edit');
+                Route::put('/edit/{organizational_function}', 'update')->name('super-admin.organizational-function.update');
+                Route::delete('/delete/{organizational_function}', 'destroy')->name('super-admin.organizational-function.destroy');
             });
     });
 });

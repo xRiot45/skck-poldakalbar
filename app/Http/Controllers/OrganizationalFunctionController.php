@@ -2,64 +2,64 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrganizationalFunctionRequest;
 use App\Models\OrganizationalFunction;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Inertia\Inertia;
+use Inertia\Response as InertiaResponse;
 
 class OrganizationalFunctionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function indexSuperAdmin(): InertiaResponse
     {
-        //
+        $organizationalFunctions = OrganizationalFunction::all();
+        return Inertia::render('super-admin/pages/profile-management/organizational-function/index', [
+            'organizationalFunctions' => $organizationalFunctions,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(): InertiaResponse
     {
-        //
+        return Inertia::render('super-admin/pages/profile-management/organizational-function/pages/form');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(OrganizationalFunctionRequest $request): RedirectResponse
     {
-        //
+        $validatedData = $request->validated();
+        OrganizationalFunction::create($validatedData);
+
+        return redirect()->route('super-admin.organizational-function.index')->with('success', 'Fungsi berhasil dibuat.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(OrganizationalFunction $organizationalFunction)
+    public function edit(int $id): InertiaResponse
     {
-        //
+        $organizationalFunction = OrganizationalFunction::findOrFail($id);
+        return Inertia::render('super-admin/pages/profile-management/organizational-function/pages/form', [
+            'organizationalFunction' => $organizationalFunction,
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(OrganizationalFunction $organizationalFunction)
+
+    public function update(OrganizationalFunctionRequest $request, int $id): RedirectResponse
     {
-        //
+        $organizationalFunction = OrganizationalFunction::findOrFail($id);
+        $organizationalFunction->update($request->validated());
+        return redirect()
+            ->route('super-admin.organizational-function.index')
+            ->with([
+                'success' => 'Fungsi berhasil diperbarui',
+            ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, OrganizationalFunction $organizationalFunction)
+    public function destroy(int $id): RedirectResponse
     {
-        //
-    }
+        $organizationalFunction = OrganizationalFunction::findOrFail($id);
+        $organizationalFunction->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(OrganizationalFunction $organizationalFunction)
-    {
-        //
+        return redirect()
+            ->route('super-admin.organizational-function.index')
+            ->with([
+                'success' => 'Fungsi berhasil dihapus',
+            ]);
     }
 }

@@ -51,7 +51,7 @@ const mainNavItems: NavGroup[] = [
             },
             {
                 title: 'Fungsi',
-                href: '/super-admin/profile-management/functions',
+                href: '/super-admin/profile-management/organizational-function',
                 icon: 'material-symbols:build',
             },
         ],
