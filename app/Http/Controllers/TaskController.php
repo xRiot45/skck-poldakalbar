@@ -4,23 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response as InertiaResponse;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function indexSuperAdmin(): InertiaResponse
     {
-        //
+        $tasks = Task::all();
+        return Inertia::render('super-admin/pages/profile-management/task/index', [
+            'tasks' => $tasks,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(): InertiaResponse
     {
-        //
+        return Inertia::render('super-admin/pages/profile-management/task/pages/form');
     }
 
     /**

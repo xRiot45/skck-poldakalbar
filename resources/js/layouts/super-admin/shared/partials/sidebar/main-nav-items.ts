@@ -46,7 +46,7 @@ const mainNavItems: NavGroup[] = [
             },
             {
                 title: 'Tugas',
-                href: '/super-admin/profile-management/tasks',
+                href: '/super-admin/profile-management/task',
                 icon: 'material-symbols:assignment',
             },
             {

@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MissionController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\VisionController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -34,7 +35,6 @@ Route::get('/kontak', function () {
 Route::get('/galeri', function () {
     return Inertia::render('gallery/gallery');
 })->name('galeri');
-
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
@@ -86,6 +86,18 @@ Route::middleware(['auth', 'verified', 'role:super-admin'])->group(function () {
                 Route::get('/edit/{mission}', 'edit')->name('super-admin.mission.edit');
                 Route::put('/edit/{mission}', 'update')->name('super-admin.mission.update');
                 Route::delete('/delete/{mission}', 'destroy')->name('super-admin.mission.destroy');
+            });
+
+        // Task
+        Route::prefix('/task')
+            ->controller(TaskController::class)
+            ->group(function () {
+                Route::get('/', 'indexSuperAdmin')->name('super-admin.task.index');
+                Route::get('/create', 'create')->name('super-admin.task.create');
+                Route::post('/create', 'store')->name('super-admin.task.store');
+                Route::get('/edit/{task}', 'edit')->name('super-admin.task.edit');
+                Route::put('/edit/{task}', 'update')->name('super-admin.task.update');
+                Route::delete('/delete/{task}', 'destroy')->name('super-admin.task.destroy');
             });
     });
 });
