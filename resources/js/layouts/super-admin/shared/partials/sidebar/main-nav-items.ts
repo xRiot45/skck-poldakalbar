@@ -76,12 +76,12 @@ const mainNavItems: NavGroup[] = [
         items: [
             {
                 title: 'Kategori Galeri',
-                href: '/super-admin/manajemen-galeri/gallery-categories',
+                href: '/super-admin/gallery-management/gallery-categories',
                 icon: 'material-symbols:category',
             },
             {
                 title: 'Galeri',
-                href: '/super-admin/manajemen-galeri/gallery',
+                href: '/super-admin/gallery-management/gallery',
                 icon: 'material-symbols:photo-library',
             },
         ],
