@@ -1,7 +1,14 @@
 import SuperAdminLayout from '@/layouts/super-admin';
+import { Task } from '@/models/profile-management/task';
 import { BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 import ButtonPartials from './partials/buttons';
+import TaskTable from './partials/table';
+import { columns } from './partials/table/columns';
+
+interface TaskPageProps {
+    tasks: Task[];
+}
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -14,7 +21,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function TaskPage() {
+export default function TaskPage({ tasks }: TaskPageProps) {
     return (
         <>
             <SuperAdminLayout breadcrumbs={breadcrumbs}>
@@ -25,6 +32,10 @@ export default function TaskPage() {
                         <p className="mt-1.5 text-[14px] text-muted-foreground">Kelola tugas yang dimiliki oleh organisasi</p>
                     </div>
                     <ButtonPartials />
+                </div>
+
+                <div className="p-4">
+                    <TaskTable data={tasks} columns={columns} />
                 </div>
             </SuperAdminLayout>
         </>

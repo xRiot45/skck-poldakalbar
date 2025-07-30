@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MissionRequest extends FormRequest
+class TaskRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -21,8 +21,8 @@ class MissionRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'title.required' => 'Judul misi tidak boleh kosong',
-            'title.string' => 'Judul misi harus berupa string',
+            'title.required' => 'Judul tugas tidak boleh kosong',
+            'title.string' => 'Judul tugas harus berupa string',
         ];
     }
 }
