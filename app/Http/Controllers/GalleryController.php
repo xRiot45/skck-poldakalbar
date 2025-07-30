@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\GalleryRequest;
 use App\Models\Gallery;
 use App\Models\GalleryCategory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
 
@@ -39,35 +41,52 @@ class GalleryController extends Controller
         return redirect()->route('super-admin.galleries.index')->with('success', 'Galeri berhasil dibuat.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Gallery $gallery)
+
+    public function edit(int $id): InertiaResponse
     {
-        //
+        $gallery = Gallery::with('galleryCategory')->findOrFail($id);
+        return Inertia::render('super-admin/pages/gallery-management/galleries/pages/form', [
+            'gallery' => $gallery,
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Gallery $gallery)
+    public function update(GalleryRequest $request, int $id): RedirectResponse
     {
-        //
+        $validatedData = $request->validated();
+        $gallery = Gallery::findOrFail($id);
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            if ($gallery->image) {
+                $oldImagePath = str_replace('/storage/', '', $gallery->image);
+                if (Storage::disk('public')->exists($oldImagePath)) {
+                    Storage::disk('public')->delete($oldImagePath);
+                }
+            }
+
+            $file = $request->file('image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAs('images/galleries', $filename, 'public');
+            $validatedData['image'] = '/storage/' . $path;
+        }
+
+
+        $gallery->update($validatedData);
+        return redirect()->route('super-admin.galleries.index')->with('success', 'Galeri berhasil diperbarui.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Gallery $gallery)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Gallery $gallery)
+    public function destroy(int $id): RedirectResponse
     {
-        //
+        $gallery = Gallery::findOrFail($id);
+
+        if ($gallery->image) {
+            $oldImagePath = str_replace('/storage/', '', $gallery->image);
+            if (Storage::disk('public')->exists($oldImagePath)) {
+                Storage::disk('public')->delete($oldImagePath);
+            }
+        }
+
+        $gallery->delete();
+        return redirect()->route('super-admin.galleries.index')->with('success', 'Galeri berhasil dihapus.');
     }
 }
