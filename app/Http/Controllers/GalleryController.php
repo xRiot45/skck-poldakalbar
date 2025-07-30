@@ -2,33 +2,41 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GalleryRequest;
 use App\Models\Gallery;
+use App\Models\GalleryCategory;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response as InertiaResponse;
 
 class GalleryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function indexSuperAdmin(): InertiaResponse
     {
-        //
+        $galleries = Gallery::with('galleryCategory')->get();
+        return Inertia::render('super-admin/pages/gallery-management/galleries/index', [
+            'galleries' => $galleries,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(): InertiaResponse
     {
-        //
+        return Inertia::render('super-admin/pages/gallery-management/galleries/pages/form');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(GalleryRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $file = $request->file('image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAs('images/galleries', $filename, 'public');
+
+            $validatedData['image'] = '/' . 'storage/' . $path;
+        }
+
+        Gallery::create($validatedData);
+        return redirect()->route('super-admin.galleries.index')->with('success', 'Galeri berhasil dibuat.');
     }
 
     /**

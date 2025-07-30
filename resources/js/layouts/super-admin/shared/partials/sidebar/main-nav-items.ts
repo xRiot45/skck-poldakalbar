@@ -81,7 +81,7 @@ const mainNavItems: NavGroup[] = [
             },
             {
                 title: 'Galeri',
-                href: '/super-admin/gallery-management/gallery',
+                href: '/super-admin/gallery-management/galleries',
                 icon: 'material-symbols:photo-library',
             },
         ],

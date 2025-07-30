@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GalleryCategoryController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\MissionController;
 use App\Http\Controllers\OrganizationalFunctionController;
 use App\Http\Controllers\RoleController;
@@ -128,6 +129,18 @@ Route::middleware(['auth', 'verified', 'role:super-admin'])->group(function () {
                 Route::get('/edit/{gallery_category}', 'edit')->name('super-admin.gallery-categories.edit');
                 Route::put('/edit/{gallery_category}', 'update')->name('super-admin.gallery-categories.update');
                 Route::delete('/delete/{gallery_category}', 'destroy')->name('super-admin.gallery-categories.destroy');
+            });
+
+        // Galleries
+        Route::prefix('/galleries')
+            ->controller(GalleryController::class)
+            ->group(function () {
+                Route::get('/', 'indexSuperAdmin')->name('super-admin.galleries.index');
+                Route::get('/create', 'create')->name('super-admin.galleries.create');
+                Route::post('/create', 'store')->name('super-admin.galleries.store');
+                Route::get('/edit/{gallery}', 'edit')->name('super-admin.galleries.edit');
+                Route::put('/edit/{gallery}', 'update')->name('super-admin.galleries.update');
+                Route::delete('/delete/{gallery}', 'destroy')->name('super-admin.galleries.destroy');
             });
     });
 });
