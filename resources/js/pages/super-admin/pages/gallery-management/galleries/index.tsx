@@ -1,7 +1,14 @@
 import SuperAdminLayout from '@/layouts/super-admin';
+import { Gallery } from '@/models/gallery-management/gallery';
 import { BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 import ButtonPartials from './partials/buttons';
+import GalleryTable from './partials/table';
+import { columns } from './partials/table/columns';
+
+interface GalleriesPageProps {
+    galleries: Gallery[];
+}
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -14,7 +21,8 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function GalleriesPage() {
+export default function GalleriesPage({ galleries }: GalleriesPageProps) {
+    console.log(galleries);
     return (
         <SuperAdminLayout breadcrumbs={breadcrumbs}>
             <Head title="Galeri" />
@@ -24,6 +32,10 @@ export default function GalleriesPage() {
                     <p className="mt-1.5 text-[14px] text-muted-foreground">Kelola galeri yang dimiliki oleh organisasi</p>
                 </div>
                 <ButtonPartials />
+            </div>
+
+            <div className="p-4">
+                <GalleryTable data={galleries} columns={columns} />
             </div>
         </SuperAdminLayout>
     );

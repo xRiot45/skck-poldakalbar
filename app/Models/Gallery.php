@@ -28,11 +28,11 @@ class Gallery extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            $model->slug = Str::slug($model->name);
+            $model->slug = Str::slug($model->title);
         });
 
         static::updating(function ($model) {
-            $model->slug = Str::slug($model->name);
+            $model->slug = Str::slug($model->title);
         });
     }
 
