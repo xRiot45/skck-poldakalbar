@@ -14,7 +14,8 @@ class Video extends Model
         'title',
         'youtube_video_id',
         'youtube_url',
-        'description'
+        'description',
+        'duration'
     ];
 
     public function videoCategory(): BelongsTo

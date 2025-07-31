@@ -8,6 +8,7 @@ use App\Http\Controllers\OrganizationalFunctionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\VideoCategoryController;
+use App\Http\Controllers\VideoController;
 use App\Http\Controllers\VisionController;
 use App\Models\OrganizationalFunction;
 use Illuminate\Support\Facades\Route;
@@ -157,6 +158,18 @@ Route::middleware(['auth', 'verified', 'role:super-admin'])->group(function () {
                 Route::get('/edit/{video_category}', 'edit')->name('super-admin.video-categories.edit');
                 Route::put('/edit/{video_category}', 'update')->name('super-admin.video-categories.update');
                 Route::delete('/delete/{video_category}', 'destroy')->name('super-admin.video-categories.destroy');
+            });
+
+        // Videos
+        Route::prefix('/videos')
+            ->controller(VideoController::class)
+            ->group(function () {
+                Route::get('/', 'indexSuperAdmin')->name('super-admin.videos.index');
+                Route::get('/create', 'create')->name('super-admin.videos.create');
+                Route::post('/create', 'store')->name('super-admin.videos.store');
+                Route::get('/edit/{video}', 'edit')->name('super-admin.videos.edit');
+                Route::put('/edit/{video}', 'update')->name('super-admin.videos.update');
+                Route::delete('/delete/{video}', 'destroy')->name('super-admin.videos.destroy');
             });
     });
 });

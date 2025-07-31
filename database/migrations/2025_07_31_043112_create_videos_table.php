@@ -17,13 +17,11 @@ return new class extends Migration
             $table->string('youtube_video_id');
             $table->string('youtube_url');
             $table->text('description')->nullable();
+            $table->string('duration', 20);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('videos');

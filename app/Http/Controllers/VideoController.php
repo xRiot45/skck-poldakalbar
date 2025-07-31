@@ -2,64 +2,52 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\VideoRequest;
 use App\Models\Video;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Inertia\Inertia;
+use Inertia\Response as InertiaResponse;
 
 class VideoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function indexSuperAdmin(): InertiaResponse
     {
-        //
+        $videos = Video::with('videoCategory')->get();
+        return Inertia::render('super-admin/pages/video-management/videos/index', [
+            'videos' => $videos,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(): InertiaResponse
     {
-        //
+        return Inertia::render('super-admin/pages/video-management/videos/pages/form');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(VideoRequest $request): RedirectResponse
     {
-        //
+        Video::create($request->validated());
+        return redirect()->route('super-admin.videos.index')->with('success', 'Video berhasil ditambahkan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Video $video)
+    public function edit(int $id): InertiaResponse
     {
-        //
+        $video = Video::find($id);
+        return Inertia::render('super-admin/pages/video-management/videos/pages/form', [
+            'video' => $video,
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Video $video)
+    public function update(VideoRequest $request, int $id): RedirectResponse
     {
-        //
+        $video = Video::find($id);
+        $video->update($request->validated());
+        return redirect()->route('super-admin.videos.index')->with('success', 'Video berhasil diperbarui.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Video $video)
+    public function destroy(int $id): RedirectResponse
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Video $video)
-    {
-        //
+        $video = Video::find($id);
+        $video->delete();
+        return redirect()->route('super-admin.videos.index')->with('success', 'Video berhasil dihapus.');
     }
 }
