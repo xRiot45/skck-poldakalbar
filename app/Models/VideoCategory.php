@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 class VideoCategory extends Model
@@ -22,5 +23,10 @@ class VideoCategory extends Model
         static::updating(function ($model) {
             $model->slug = Str::slug($model->name);
         });
+    }
+
+    public function videos(): HasMany
+    {
+        return $this->hasMany(Video::class);
     }
 }
