@@ -91,12 +91,12 @@ const mainNavItems: NavGroup[] = [
         items: [
             {
                 title: 'Kategori Video',
-                href: '/super-admin/manajemen-video/video-categories',
+                href: '/super-admin/video-management/video-categories',
                 icon: 'material-symbols:category',
             },
             {
                 title: 'Video',
-                href: '/super-admin/manajemen-video/videos',
+                href: '/super-admin/video-management/videos',
                 icon: 'material-symbols:video-library',
             },
         ],
