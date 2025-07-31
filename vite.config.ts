@@ -22,4 +22,10 @@ export default defineConfig({
             'ziggy-js': resolve(__dirname, 'vendor/tightenco/ziggy'),
         },
     },
+    server: {
+        host: true,
+        hmr: {
+            host: '192.168.29.141', // IP lokal kamu
+        },
+    },
 });
