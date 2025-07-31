@@ -2,64 +2,52 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\VideoCategoryRequest;
 use App\Models\VideoCategory;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Inertia\Inertia;
+use Inertia\Response as InertiaResponse;
 
 class VideoCategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function indexSuperAdmin(): InertiaResponse
     {
-        //
+        $videoCategories = VideoCategory::all();
+        return Inertia::render('super-admin/pages/video-management/video-categories/index', [
+            'videoCategories' => $videoCategories,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(): InertiaResponse
     {
-        //
+        return Inertia::render('super-admin/pages/video-management/video-categories/pages/form');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(VideoCategoryRequest $request): RedirectResponse
     {
-        //
+        VideoCategory::create($request->validated());
+        return redirect()->route('super-admin.video-categories.index')->with('success', 'Kategori video berhasil dibuat.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(VideoCategory $videoCategory)
+    public function edit(int $id): InertiaResponse
     {
-        //
+        $videoCategory = VideoCategory::findOrFail($id);
+        return Inertia::render('super-admin/pages/video-management/video-categories/pages/form', [
+            'videoCategory' => $videoCategory,
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(VideoCategory $videoCategory)
+    public function update(VideoCategoryRequest $request, int $id): RedirectResponse
     {
-        //
+        $videoCategory = VideoCategory::findOrFail($id);
+        $videoCategory->update($request->validated());
+        return redirect()->route('super-admin.video-categories.index')->with('success', 'Kategori video berhasil diperbarui.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, VideoCategory $videoCategory)
+    public function destroy(int $id): RedirectResponse
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(VideoCategory $videoCategory)
-    {
-        //
+        $videoCategory = VideoCategory::findOrFail($id);
+        $videoCategory->delete();
+        return redirect()->route('super-admin.video-categories.index')->with('success', 'Kategori video berhasil dihapus.');
     }
 }
