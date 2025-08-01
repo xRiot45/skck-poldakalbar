@@ -51,7 +51,7 @@ export default function NewsDetail({ news }: NewsDetailProps) {
             {/* Body Content */}
             <main className="bg-white text-gray-900 transition-colors duration-300 dark:bg-gray-950 dark:text-white">
                 <div className="mx-auto max-w-5xl px-4 py-10">
-                    <Card className="overflow-hidden border border-none border-gray-200 shadow-none transition-colors dark:border-gray-800 dark:bg-gray-900">
+                    <Card className="overflow-hidden border border-none border-gray-200 shadow-none transition-colors dark:border-gray-800 dark:bg-gray-950">
                         {/* Thumbnail di Dalam Card */}
                         {news?.thumbnail && (
                             <motion.div
