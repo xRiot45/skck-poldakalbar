@@ -9,6 +9,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\OrganizationalFunctionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\User\HomepageController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\VisionMissionController;
 use App\Http\Controllers\VideoCategoryController;
@@ -17,10 +18,11 @@ use App\Http\Controllers\VisionController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('welcome');
-})->name('home');
+// Route::get('/', function () {
+//     return Inertia::render('welcome');
+// })->name('home');
 
+Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 Route::get('/visi-misi', [VisionMissionController::class, 'index'])->name('visi-misi');
 Route::get('/profil', [ProfileController::class, 'index'])->name('profil');
 
