@@ -2,30 +2,20 @@ import LogoIcon from '@/assets/images/logo_1.png';
 import { Footer } from '@/components/footer';
 import NavbarV3 from '@/components/navbar/navbar3';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { OrganizationalFunction } from '@/models/profile-management/organizational-function';
+import { Task } from '@/models/profile-management/task';
 import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
 
-export default function ProfilV3Plus() {
-    const tugas = [
-        'Melakukan deteksi aksi intelijen berupa deteksi dini, peringatan dini dan/atau cegah dini dengan didukung teknologi intelijen dan persandian;',
-        'Memberikan pelayanan administrasi dan pengawasan senjata api atau bahan peledak, orang asing, dan kegiatan sosial atau politik masyarakat sesuai ketentuan peraturan perundang-undangan;',
-        'Mengumpulkan, mengolah dan mendokumentasikan data serta menyajikan informasi kepada pimpinan, satuan fungsi kepolisian dan instansi terkait.',
-    ];
+interface ProfilePageProps {
+    tasks: Task[];
+    organizationalFunctions: OrganizationalFunction[];
+}
 
-    const fungsi = [
-        'Penyusunan rencana kerja dan anggaran, pengelolaan dan pembinaan manajemen personel dan logistik, administrasi dan ketatausahaan, serta pengelolaan keuangan;',
-        'Penyelidikan intelijen terhadap potensi gangguan, ambang gangguan dan/atau gangguan nyata;',
-        'Pengamanan intelijen terhadap kegiatan, bahan keterangan, personel dan/atau materiil;',
-        'Penggalangan intelijen terhadap individu dan/atau kelompok;',
-        'Penganalisaan terhadap bahan keterangan dan perkembangan situasi untuk memperkirakan kadar ancaman dalam bentuk produk intelijen dan literatur;',
-        'Pemberian bantuan teknologi dan persandian kepada satuan fungsi kepolisian dalam memelihara keamanan dan ketertiban masyarakat;',
-        'Pelayanan masyarakat meliputi penerimaan pemberitahuan dan pemberian ijin kegiatan masyarakat, Surat Keterangan Catatan Kepolisian (SKCK), administrasi pengawasan orang asing serta administrasi senjata api dan bahan peledak.',
-    ];
-
+export default function ProfilePage({ tasks, organizationalFunctions }: ProfilePageProps) {
     return (
         <>
             <NavbarV3 />
-
             <section className="bg-white text-gray-900 dark:bg-gray-900/90 dark:text-white">
                 {/* HERO - Banner Tetap Gelap */}
                 <div className="relative overflow-hidden bg-gray-950 text-white">
@@ -69,7 +59,7 @@ export default function ProfilV3Plus() {
                             </CardHeader>
                             <CardContent>
                                 <ul className="list-inside list-disc space-y-3 text-gray-700 dark:text-gray-300">
-                                    {tugas.map((item, idx) => (
+                                    {tasks.map((item, idx) => (
                                         <motion.li
                                             key={idx}
                                             initial="hidden"
@@ -78,7 +68,7 @@ export default function ProfilV3Plus() {
                                             transition={{ delay: idx * 0.15, duration: 0.6, ease: 'easeOut' }}
                                             className="transition hover:text-purple-500"
                                         >
-                                            {item}
+                                            {item?.title}
                                         </motion.li>
                                     ))}
                                 </ul>
@@ -96,7 +86,7 @@ export default function ProfilV3Plus() {
                             </CardHeader>
                             <CardContent>
                                 <ul className="list-inside list-disc space-y-3 text-gray-700 dark:text-gray-300">
-                                    {fungsi.map((item, idx) => (
+                                    {organizationalFunctions.map((item, idx) => (
                                         <motion.li
                                             key={idx}
                                             initial="hidden"
@@ -105,7 +95,7 @@ export default function ProfilV3Plus() {
                                             transition={{ delay: idx * 0.15, duration: 0.6, ease: 'easeOut' }}
                                             className="transition hover:text-cyan-500"
                                         >
-                                            {item}
+                                            {item?.title}
                                         </motion.li>
                                     ))}
                                 </ul>

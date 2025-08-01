@@ -9,10 +9,10 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\OrganizationalFunctionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\VideoCategoryController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\VisionController;
-use App\Models\OrganizationalFunction;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -24,9 +24,7 @@ Route::get('/visi', function () {
     return Inertia::render('vision/vision2');
 })->name('visi');
 
-Route::get('/profil', function () {
-    return Inertia::render('profile/profile3');
-})->name('profil');
+Route::get('/profil', [ProfileController::class, 'index']);
 
 Route::get('/skck', function () {
     return Inertia::render('skck/skck3');

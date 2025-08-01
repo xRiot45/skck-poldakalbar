@@ -101,21 +101,21 @@ const mainNavItems: NavGroup[] = [
             },
         ],
     },
-    {
-        group: 'PENGATURAN WEBSITE',
-        items: [
-            {
-                title: 'Pengaturan Kontak',
-                href: '/super-admin/pengaturan-website/contact-settings',
-                icon: 'material-symbols:contact-page',
-            },
-            {
-                title: 'Pengaturan Media Sosial',
-                href: '/super-admin/pengaturan-website/social-media-settings',
-                icon: 'material-symbols:share',
-            },
-        ],
-    },
+    // {
+    //     group: 'PENGATURAN WEBSITE',
+    //     items: [
+    //         {
+    //             title: 'Pengaturan Kontak',
+    //             href: '/super-admin/pengaturan-website/contact-settings',
+    //             icon: 'material-symbols:contact-page',
+    //         },
+    //         {
+    //             title: 'Pengaturan Media Sosial',
+    //             href: '/super-admin/pengaturan-website/social-media-settings',
+    //             icon: 'material-symbols:share',
+    //         },
+    //     ],
+    // },
 ];
 
 export default mainNavItems;
