@@ -44,6 +44,14 @@ class NewsController extends Controller
         return redirect()->route('super-admin.news.index')->with('success', 'Berita berhasil dibuat.');
     }
 
+    public function show(string $slug): InertiaResponse
+    {
+        $news = News::where('slug', $slug)->with('newsCategory')->firstOrFail();
+        return Inertia::render('user/pages/news/detail/index', [
+            'news' => $news
+        ]);
+    }
+
     public function edit(int $id): InertiaResponse
     {
         $news = News::findOrFail($id);

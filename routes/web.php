@@ -25,6 +25,7 @@ use Inertia\Inertia;
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 Route::get('/visi-misi', [VisionMissionController::class, 'index'])->name('visi-misi');
 Route::get('/profil', [ProfileController::class, 'index'])->name('profil');
+Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('news.show');
 
 Route::get('/skck', function () {
     return Inertia::render('skck/skck3');

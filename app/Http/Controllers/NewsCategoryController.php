@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\NewsCategoryRequest;
+use App\Models\News;
 use App\Models\NewsCategory;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;

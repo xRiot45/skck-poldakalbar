@@ -87,7 +87,7 @@ export default function NewsSection({ news }: NewsSectionProps) {
                                     </span>
                                 </div>
 
-                                <Link href={`/berita/${highlight.id}`}>
+                                <Link href={`/berita/${highlight.slug}`}>
                                     <Button className="mt-5 bg-blue-600 hover:bg-blue-700">Baca Selengkapnya</Button>
                                 </Link>
                             </div>
@@ -133,7 +133,7 @@ export default function NewsSection({ news }: NewsSectionProps) {
                                         </div>
                                         <div className="bg-white p-3 dark:bg-gray-900">
                                             <span className="mt-1 block text-xs text-gray-500 dark:text-gray-400">{formatDate(item.created_at)}</span>
-                                            <Link href={`/berita/${item.id}`} className="mt-2 block">
+                                            <Link href={`/berita/${item.slug}`} className="mt-2 block">
                                                 <h4 className="line-clamp-2 text-sm font-semibold text-gray-900 dark:text-white">{item.title}</h4>
                                             </Link>
                                         </div>
