@@ -10,6 +10,7 @@ use App\Http\Controllers\OrganizationalFunctionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\User\VisionMissionController;
 use App\Http\Controllers\VideoCategoryController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\VisionController;
@@ -20,11 +21,8 @@ Route::get('/', function () {
     return Inertia::render('welcome');
 })->name('home');
 
-Route::get('/visi', function () {
-    return Inertia::render('vision/vision2');
-})->name('visi');
-
-Route::get('/profil', [ProfileController::class, 'index']);
+Route::get('/visi-misi', [VisionMissionController::class, 'index'])->name('visi-misi');
+Route::get('/profil', [ProfileController::class, 'index'])->name('profil');
 
 Route::get('/skck', function () {
     return Inertia::render('skck/skck3');

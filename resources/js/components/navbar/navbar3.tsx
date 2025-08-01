@@ -104,7 +104,7 @@ const NavbarV3 = () => {
                                                 </li>
                                                 <li>
                                                     <NavigationMenuLink
-                                                        href="/visi"
+                                                        href="/visi-misi"
                                                         className="block rounded-md p-4 text-sm hover:bg-accent hover:text-accent-foreground"
                                                     >
                                                         Visi & Misi
@@ -250,7 +250,7 @@ const NavbarV3 = () => {
                                         <a href="/profil" className="text-sm hover:text-primary">
                                             Profil
                                         </a>
-                                        <a href="/visi" className="text-sm hover:text-primary">
+                                        <a href="/visi-misi" className="text-sm hover:text-primary">
                                             Visi & Misi
                                         </a>
                                     </div>
