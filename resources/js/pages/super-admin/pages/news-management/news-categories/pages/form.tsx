@@ -1,0 +1,124 @@
+import InputError from '@/components/input-error';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import SuperAdminLayout from '@/layouts/super-admin';
+import { cn } from '@/lib/utils';
+import { NewsCategory, NewsCategoryForm } from '@/models/news-management/news-category';
+import { BreadcrumbItem } from '@/types';
+import { Icon } from '@iconify/react';
+import { Head, Link, useForm } from '@inertiajs/react';
+import { LoaderCircle } from 'lucide-react';
+import { FormEventHandler } from 'react';
+import { toast } from 'sonner';
+
+const breadcrumbs: BreadcrumbItem[] = [
+    {
+        title: 'Manajemen Berita',
+        href: '#',
+    },
+    {
+        title: 'Kategori Berita',
+        href: '/super-admin/news-management/news-categories',
+    },
+    {
+        title: 'Form Kategori Berita',
+        href: '#',
+    },
+];
+
+export default function FormPage({ newsCategory }: { newsCategory: NewsCategory }) {
+    const isEdit = !!newsCategory?.id;
+    const { data, setData, post, put, processing, errors, reset } = useForm<Required<NewsCategoryForm>>({
+        name: isEdit ? newsCategory?.name : '',
+    });
+
+    const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+        e.preventDefault();
+
+        if (isEdit) {
+            put(route('super-admin.news-categories.update', { id: newsCategory?.id }), {
+                onSuccess: () => {
+                    toast.success('Success', {
+                        description: 'Kategori Berita Berhasil Diedit!',
+                        action: {
+                            label: 'Tutup',
+                            onClick: () => toast.dismiss(),
+                        },
+                    });
+                    reset();
+                },
+                onError: (error) => {
+                    Object.keys(error).forEach((key) => {
+                        toast.error('Error', {
+                            description: error[key],
+                            action: {
+                                label: 'Tutup',
+                                onClick: () => toast.dismiss(),
+                            },
+                        });
+                    });
+                },
+            });
+        } else {
+            post(route('super-admin.news-categories.store'), {
+                onSuccess: () => {
+                    toast.success('Success', {
+                        description: 'Kategori Berita Berhasil Ditambahkan!',
+                        action: {
+                            label: 'Tutup',
+                            onClick: () => toast.dismiss(),
+                        },
+                    });
+                },
+                onError: (error) => {
+                    Object.keys(error).forEach((key) => {
+                        toast.error('Error', {
+                            description: error[key],
+                            action: {
+                                label: 'Tutup',
+                                onClick: () => toast.dismiss(),
+                            },
+                        });
+                    });
+                },
+            });
+        }
+    };
+
+    return (
+        <SuperAdminLayout breadcrumbs={breadcrumbs}>
+            <Head title={isEdit ? 'Edit Kategori Berita' : 'Tambah Kategori Berita'} />
+            <form onSubmit={handleSubmit} className="p-4">
+                <Label htmlFor="name">
+                    Kategori Berita <span className="text-red-500">*</span>
+                </Label>
+                <Input
+                    id="name"
+                    type="text"
+                    autoFocus
+                    tabIndex={1}
+                    autoComplete="name"
+                    value={data.name}
+                    onChange={(e) => setData('name', e.target.value)}
+                    placeholder="Masukkan Kategori Berita"
+                    className={cn('mt-2 rounded-md px-4 py-6', errors.name && 'border border-red-500')}
+                />
+                <InputError message={errors.name} className="mt-2" />
+
+                <div className="mt-4 flex justify-end space-x-3">
+                    <Link href={route('super-admin.news-categories.index')}>
+                        <Button variant="destructive" className="cursor-pointer">
+                            Batalkan <Icon icon="iconoir:cancel" />
+                        </Button>
+                    </Link>
+                    <Button type="submit" tabIndex={4} disabled={processing} className="cursor-pointer">
+                        {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
+                        {isEdit ? 'Edit Kategori Berita' : 'Tambah Kategori Berita'}
+                        <Icon icon={isEdit ? 'material-symbols:edit' : 'heroicons:plus'} />
+                    </Button>
+                </div>
+            </form>
+        </SuperAdminLayout>
+    );
+}

@@ -61,12 +61,12 @@ const mainNavItems: NavGroup[] = [
         items: [
             {
                 title: 'Kategori Berita',
-                href: '/super-admin/manajemen-berita/news-categories',
+                href: '/super-admin/news-management/news-categories',
                 icon: 'material-symbols:category',
             },
             {
                 title: 'Berita',
-                href: '/super-admin/manajemen-berita/news',
+                href: '/super-admin/news-management/news',
                 icon: 'material-symbols:article',
             },
         ],
