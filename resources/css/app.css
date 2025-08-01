@@ -6,6 +6,7 @@
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@plugin '@tailwindcss/typography';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -142,3 +143,7 @@
         @apply bg-background text-foreground;
     }
 }
+
+/* .prose * {
+    color: white !important;
+} */
