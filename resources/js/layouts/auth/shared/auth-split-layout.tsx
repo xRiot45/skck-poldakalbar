@@ -19,7 +19,7 @@ export default function AuthSplitLayout({ children, title, description }: PropsW
                 style={{ backgroundImage: `url(${ImageUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
             >
                 <div className="absolute inset-0 bg-black opacity-50" />
-                <Link href={route('home')} className="relative z-20 flex items-center gap-4 text-lg font-medium">
+                <Link href={route('homepage')} className="relative z-20 flex items-center gap-4 text-lg font-medium">
                     <LogoIcon className="h-12 fill-current text-white" />
                     {name}
                 </Link>
@@ -37,7 +37,7 @@ export default function AuthSplitLayout({ children, title, description }: PropsW
             <div className="flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 md:px-8">
                 <div className="w-full max-w-md space-y-6">
                     <div className="flex justify-center">
-                        <Link href={route('home')} className="flex items-center">
+                        <Link href={route('homepage')} className="flex items-center">
                             <LogoIcon className="h-12 fill-current text-black dark:text-white" />
                         </Link>
                     </div>
