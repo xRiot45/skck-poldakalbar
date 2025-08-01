@@ -5,6 +5,7 @@ use App\Http\Controllers\GalleryCategoryController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\MissionController;
 use App\Http\Controllers\NewsCategoryController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\OrganizationalFunctionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TaskController;
@@ -186,6 +187,18 @@ Route::middleware(['auth', 'verified', 'role:super-admin'])->group(function () {
                 Route::get('/edit/{news_category}', 'edit')->name('super-admin.news-categories.edit');
                 Route::put('/edit/{news_category}', 'update')->name('super-admin.news-categories.update');
                 Route::delete('/delete/{news_category}', 'destroy')->name('super-admin.news-categories.destroy');
+            });
+
+        // News
+        Route::prefix('/news')
+            ->controller(NewsController::class)
+            ->group(function () {
+                Route::get('/', 'indexSuperAdmin')->name('super-admin.news.index');
+                Route::get('/create', 'create')->name('super-admin.news.create');
+                Route::post('/create', 'store')->name('super-admin.news.store');
+                Route::get('/edit/{news}', 'edit')->name('super-admin.news.edit');
+                Route::put('/edit/{news}', 'update')->name('super-admin.news.update');
+                Route::delete('/delete/{news}', 'destroy')->name('super-admin.news.destroy');
             });
     });
 });

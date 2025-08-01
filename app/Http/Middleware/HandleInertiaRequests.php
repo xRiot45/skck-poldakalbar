@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\GalleryCategory;
+use App\Models\NewsCategory;
 use App\Models\VideoCategory;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
@@ -56,6 +57,7 @@ class HandleInertiaRequests extends Middleware
 
             'galleryCategories' => GalleryCategory::all(),
             'videoCategories' => VideoCategory::all(),
+            'newsCategories' => NewsCategory::all(),
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
         ];
     }
