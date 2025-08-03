@@ -27,7 +27,7 @@ import { toast } from 'sonner';
 
 export function DataTableRowActions({ row }: { row: Row<ContactForm> }) {
     const handleDelete = (id: number) => {
-        router.delete(route('super-admin.contact-form.destroy', { id }), {
+        router.delete(route('super-admin.contacts-form.destroy', { id }), {
             onSuccess: () => {
                 toast.success('Success', {
                     description: 'Data Berhasil Dihapus!',
