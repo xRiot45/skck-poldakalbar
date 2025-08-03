@@ -1,0 +1,68 @@
+import { cn } from '@/lib/utils';
+import { ContactForm } from '@/models/contact-management/contact-form';
+import { formatDate } from '@/utils/format-date';
+import { ColumnDef, Row } from '@tanstack/react-table';
+import { DataTableColumnHeader } from './components/data-table-column-header';
+import { DataTableRowActions } from './components/data-table-row-actions';
+
+export const columns: ColumnDef<ContactForm>[] = [
+    {
+        id: 'no',
+        accessorKey: 'no',
+        header: ({ column }) => <DataTableColumnHeader column={column} title="No" />,
+        cell: ({ row }) => <span className="text-sm text-gray-600 dark:text-gray-200">{row.index + 1}</span>,
+        meta: {
+            className: cn('p-4 ps-8'),
+        },
+        enableSorting: false,
+        enableHiding: false,
+    },
+    {
+        id: 'name',
+        accessorKey: 'name',
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Nama Pengirim" />,
+        cell: ({ row }) => <div className="max-w-[300px] break-words whitespace-normal">{row.getValue('name')}</div>,
+        enableSorting: false,
+        enableHiding: false,
+    },
+    {
+        id: 'email',
+        accessorKey: 'email',
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Email Pengirim" />,
+        cell: ({ row }) => <div className="max-w-[300px] break-words whitespace-normal">{row.getValue('email')}</div>,
+        enableSorting: false,
+        enableHiding: false,
+    },
+    {
+        id: 'message',
+        accessorKey: 'message',
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Pesan Pengirim" />,
+        cell: ({ row }) => <div className="max-w-[300px] break-words whitespace-normal">{row.getValue('message')}</div>,
+        enableSorting: false,
+        enableHiding: false,
+    },
+    {
+        id: 'created_at',
+        accessorKey: 'created_at',
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Dibuat Pada" />,
+        cell: ({ row }) => <span className="max-w-36">{formatDate(row.getValue('created_at'))}</span>,
+        enableHiding: true,
+        enableSorting: true,
+    },
+    {
+        id: 'updated_at',
+        accessorKey: 'updated_at',
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Diubah Pada" />,
+        cell: ({ row }) => <span className="max-w-36">{formatDate(row.getValue('updated_at'))}</span>,
+        enableHiding: true,
+        enableSorting: true,
+    },
+    {
+        id: 'actions',
+        accessorKey: 'actions',
+        header: ({ column }) => <DataTableColumnHeader column={column} title="Aksi" />,
+        cell: ({ row }) => <DataTableRowActions row={row as Row<ContactForm>} />,
+        enableHiding: false,
+        enableSorting: false,
+    },
+];

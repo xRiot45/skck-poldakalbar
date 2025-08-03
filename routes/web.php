@@ -201,6 +201,17 @@ Route::middleware(['auth', 'verified', 'role:super-admin'])->group(function () {
                 Route::delete('/delete/{news}', 'destroy')->name('super-admin.news.destroy');
             });
     });
+
+    // Contact Management
+    Route::prefix('/super-admin/contact-management')->group(function () {
+        // Contacts Form
+        Route::prefix('/contacts-form')
+            ->controller(ContactFormController::class)
+            ->group(function () {
+                Route::get('/', 'indexSuperAdmin')->name('super-admin.contacts-form.index');
+                Route::delete('/delete/{contact}', 'destroy')->name('super-admin.contacts-form.destroy');
+            });
+    });
 });
 
 require __DIR__ . '/settings.php';

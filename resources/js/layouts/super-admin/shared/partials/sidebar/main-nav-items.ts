@@ -101,6 +101,16 @@ const mainNavItems: NavGroup[] = [
             },
         ],
     },
+    {
+        group: 'MANAJEMEN KONTAK',
+        items: [
+            {
+                title: 'Kontak',
+                href: '/super-admin/contact-management/contacts-form',
+                icon: 'material-symbols:contact-page',
+            },
+        ],
+    },
     // {
     //     group: 'PENGATURAN WEBSITE',
     //     items: [

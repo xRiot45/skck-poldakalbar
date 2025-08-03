@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContactFormRequest;
 use App\Models\ContactForm;
 use Illuminate\Http\RedirectResponse;
-
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
 
@@ -14,7 +13,7 @@ class ContactFormController extends Controller
     public function indexSuperAdmin(): InertiaResponse
     {
         $contactForms = ContactForm::all();
-        return Inertia::render('super-admin/pages/contact-forms/index', [
+        return Inertia::render('super-admin/pages/contact-management/contacts-form/index', [
             'contactForms' => $contactForms,
         ]);
     }
