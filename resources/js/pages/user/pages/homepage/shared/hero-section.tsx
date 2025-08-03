@@ -54,16 +54,20 @@ export default function HeroSection() {
                     </Link>
 
                     {/* Izin Keramaian */}
-                    <div className="group flex cursor-pointer flex-col items-center justify-center rounded-lg bg-gradient-to-br from-red-500 to-rose-500 p-2 shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-rose-400/50">
-                        <Icon icon="mdi:account-group-outline" className="mb-2 h-6 w-6 text-white group-hover:animate-bounce" />
-                        <span className="text-center text-sm font-semibold text-white">Izin Keramaian</span>
-                    </div>
+                    <Link href="/izin-keramaian">
+                        <div className="group flex cursor-pointer flex-col items-center justify-center rounded-lg bg-gradient-to-br from-red-500 to-rose-500 p-2 shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-rose-400/50">
+                            <Icon icon="mdi:account-group-outline" className="mb-2 h-6 w-6 text-white group-hover:animate-bounce" />
+                            <span className="text-center text-sm font-semibold text-white">Izin Keramaian</span>
+                        </div>
+                    </Link>
 
                     {/* Sendak */}
-                    <div className="group flex cursor-pointer flex-col items-center justify-center rounded-lg bg-gradient-to-br from-yellow-500 to-amber-500 p-2 shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-amber-400/50">
-                        <Icon icon="mdi:account-badge-outline" className="mb-2 h-6 w-6 text-white group-hover:animate-bounce" />
-                        <span className="text-sm font-semibold text-white">Sendak</span>
-                    </div>
+                    <Link href="/sendak">
+                        <div className="group flex cursor-pointer flex-col items-center justify-center rounded-lg bg-gradient-to-br from-yellow-500 to-amber-500 p-2 shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-amber-400/50">
+                            <Icon icon="mdi:account-badge-outline" className="mb-2 h-6 w-6 text-white group-hover:animate-bounce" />
+                            <span className="text-sm font-semibold text-white">Sendak</span>
+                        </div>
+                    </Link>
                 </motion.div>
 
                 {/* Highlight Features */}
