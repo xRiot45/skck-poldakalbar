@@ -38,19 +38,6 @@ export default function GallerySection({ galleries }: GallerySectionProps) {
                     <p className="text-base text-gray-500 md:text-lg dark:text-gray-400">
                         Dokumentasi kegiatan, fasilitas, dan inovasi pelayanan Ditintelkam Polda Kalimantan Barat.
                     </p>
-
-                    {/* Filter Buttons (Dummy) */}
-                    <div className="mt-6 flex justify-center gap-3">
-                        <Button variant="default" className="rounded-full bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700">
-                            Semua
-                        </Button>
-                        <Button variant="outline" className="rounded-full border-gray-300 px-4 py-2 text-sm dark:border-gray-600 dark:text-white">
-                            Pelayanan
-                        </Button>
-                        <Button variant="outline" className="rounded-full border-gray-300 px-4 py-2 text-sm dark:border-gray-600 dark:text-white">
-                            Fasilitas
-                        </Button>
-                    </div>
                 </div>
 
                 {/* Masonry Gallery */}
