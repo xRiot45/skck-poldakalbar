@@ -24,8 +24,10 @@ class ContactFormController extends Controller
         return redirect()->route('contact')->with('success', 'Pesan berhasil dikirim!');
     }
 
-    public function destroy(ContactForm $contactForm)
+    public function destroy(int $id)
     {
-        //
+        $contactForm = ContactForm::find($id);
+        $contactForm->delete();
+        return redirect()->route('super-admin.contacts-form.index')->with('success', 'Pesan berhasil dihapus!');
     }
 }
