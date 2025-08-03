@@ -21,6 +21,16 @@ class GalleryController extends Controller
         ]);
     }
 
+    public function indexUser(): InertiaResponse
+    {
+        $galleries = Gallery::with('galleryCategory')->get();
+        $galleryCategory = GalleryCategory::all();
+        return Inertia::render('user/pages/gallery/index', [
+            'galleries' => $galleries,
+            'galleryCategory' => $galleryCategory
+        ]);
+    }
+
     public function create(): InertiaResponse
     {
         return Inertia::render('super-admin/pages/gallery-management/galleries/pages/form');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\NewsRequest;
 use App\Models\News;
+use App\Models\NewsCategory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
@@ -16,6 +17,16 @@ class NewsController extends Controller
         $news = News::with('newsCategory')->get();
         return Inertia::render('super-admin/pages/news-management/news/index', [
             'news' => $news,
+        ]);
+    }
+
+    public function indexUser(): InertiaResponse
+    {
+        $news = News::with('newsCategory')->get();
+        $newsCategory = NewsCategory::all();
+        return Inertia::render('user/pages/news/index', [
+            'news' => $news,
+            'newsCategory' => $newsCategory
         ]);
     }
 

@@ -11,7 +11,6 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\User\HomepageController;
 use App\Http\Controllers\User\ProfileController;
-use App\Http\Controllers\User\GalleryController as UserGalleryController;
 use App\Http\Controllers\User\VisionMissionController;
 use App\Http\Controllers\VideoCategoryController;
 use App\Http\Controllers\VideoController;
@@ -23,16 +22,17 @@ use Inertia\Inertia;
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 Route::get('/visi-misi', [VisionMissionController::class, 'index'])->name('visi-misi');
 Route::get('/profil', [ProfileController::class, 'index'])->name('profil');
+Route::get('/berita', [NewsController::class, 'indexUser'])->name('berita');
 Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('news.show');
-Route::get('/galeri', [UserGalleryController::class, 'index'])->name('galeri');
+Route::get('/galeri', [GalleryController::class, 'indexUser'])->name('galeri');
 
 Route::get('/skck', function () {
     return Inertia::render('skck/skck3');
 })->name('skck');
 
-Route::get('/berita', function () {
-    return Inertia::render('news/news1');
-})->name('berita');
+// Route::get('/berita', function () {
+//     return Inertia::render('news/news1');
+// })->name('berita');
 
 Route::get('/kontak', function () {
     return Inertia::render('contact/contact');
