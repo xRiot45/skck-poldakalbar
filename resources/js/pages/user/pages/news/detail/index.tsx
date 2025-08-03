@@ -15,38 +15,29 @@ export default function NewsDetail({ news }: NewsDetailProps) {
             <NavbarV3 />
 
             {/* Hero Section (Gelap) */}
-            <section className="relative isolate overflow-hidden bg-gray-950">
-                {/* Gradient Layer */}
-                <div className="absolute inset-0">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(56,189,248,0.25),transparent_70%)]" />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(192,132,252,0.25),transparent_70%)]" />
-                    {/* Accent gradient diagonal */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-gray-900/70 via-gray-900/50 to-transparent" />
-                </div>
+            <div className="relative overflow-hidden bg-gray-950 text-white">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(56,189,248,0.3),transparent_70%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(192,132,252,0.3),transparent_70%)]" />
 
-                {/* Content */}
-                <div className="relative mx-auto max-w-6xl px-6 py-28 text-center">
-                    {/* Title */}
+                <div className="relative mx-auto max-w-7xl px-6 py-28 text-center">
                     <motion.h1
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.1 }}
-                        className="mt-6 text-4xl font-extrabold tracking-tight text-white"
+                        transition={{ duration: 0.7 }}
+                        className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-5xl font-extrabold text-transparent uppercase"
                     >
                         Detail Berita
                     </motion.h1>
-
-                    {/* Subtitle */}
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
-                        className="mx-auto mt-4 max-w-2xl text-base text-gray-300 sm:text-lg"
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="mx-auto mt-6 max-w-2xl text-lg text-gray-300"
                     >
-                        Baca informasi lengkap mengenai berita terbaru kami dengan tampilan modern dan fokus ke konten.
+                        Lihat dan nikmati berita terbaru Ditintelkam Polda Kalimantan Barat
                     </motion.p>
                 </div>
-            </section>
+            </div>
 
             {/* Body Content */}
             <main className="bg-white text-gray-900 transition-colors duration-300 dark:bg-gray-950 dark:text-white">
