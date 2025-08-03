@@ -17,7 +17,6 @@ interface HomepageProps {
 }
 
 export default function Homepage({ galleries, videos, news }: HomepageProps) {
-    console.log(news);
     return (
         <>
             <NavbarV3 />

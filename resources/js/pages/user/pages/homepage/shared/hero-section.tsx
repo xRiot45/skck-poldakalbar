@@ -1,5 +1,4 @@
 import Banner from '@/assets/images/banner.png';
-import ProsedurSKCKModal from '@/components/prosedur-skck-modal';
 import { Button } from '@/components/ui/button';
 import { Icon } from '@iconify/react';
 import { Link } from '@inertiajs/react';
@@ -99,9 +98,6 @@ export default function HeroSection() {
                     transition={{ delay: 0.7, duration: 0.5 }}
                     className="mt-12 flex gap-4"
                 >
-                    {/* Tombol Lihat Prosedur */}
-                    <ProsedurSKCKModal />
-
                     {/* Tombol Hubungi Kami */}
                     <a href="https://wa.me/6281347786363" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                         <Button

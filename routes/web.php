@@ -18,7 +18,6 @@ use App\Http\Controllers\VisionController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 Route::get('/visi-misi', [VisionMissionController::class, 'index'])->name('visi-misi');
 Route::get('/profil', [ProfileController::class, 'index'])->name('profil');
@@ -27,17 +26,12 @@ Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('news.show')
 Route::get('/galeri', [GalleryController::class, 'indexUser'])->name('galeri');
 
 Route::get('/skck', function () {
-    return Inertia::render('skck/skck3');
+    return Inertia::render('user/pages/skck/index');
 })->name('skck');
-
-// Route::get('/berita', function () {
-//     return Inertia::render('news/news1');
-// })->name('berita');
 
 Route::get('/kontak', function () {
     return Inertia::render('contact/contact');
 })->name('contact');
-
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
