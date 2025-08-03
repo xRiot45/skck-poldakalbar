@@ -148,7 +148,7 @@ const NavbarV3 = () => {
                                                 </li>
                                                 <li>
                                                     <NavigationMenuLink
-                                                        href="#"
+                                                        href="/izin-keramaian"
                                                         className="block rounded-md p-4 text-sm hover:bg-accent hover:text-accent-foreground"
                                                     >
                                                         Izin Keramaian
@@ -156,7 +156,7 @@ const NavbarV3 = () => {
                                                 </li>
                                                 <li>
                                                     <NavigationMenuLink
-                                                        href="#"
+                                                        href="/sendak"
                                                         className="block rounded-md p-4 text-sm hover:bg-accent hover:text-accent-foreground"
                                                     >
                                                         Sendak

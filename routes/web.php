@@ -29,6 +29,10 @@ Route::get('/skck', function () {
     return Inertia::render('user/pages/skck/index');
 })->name('skck');
 
+Route::get('/izin-keramaian', function () {
+    return Inertia::render('user/pages/izin-keramaian/index');
+});
+
 Route::get('/kontak', function () {
     return Inertia::render('contact/contact');
 })->name('contact');
