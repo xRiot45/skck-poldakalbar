@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GalleryCategoryController;
 use App\Http\Controllers\GalleryController;
@@ -38,8 +39,10 @@ Route::get('/sendak', function () {
 })->name('sendak');
 
 Route::get('/kontak', function () {
-    return Inertia::render('contact/contact');
+    return Inertia::render('user/pages/contact/index');
 })->name('contact');
+
+Route::post('/contact', [ContactFormController::class, 'store'])->name('contact.store');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {

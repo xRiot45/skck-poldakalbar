@@ -2,62 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactFormRequest;
 use App\Models\ContactForm;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+
+use Inertia\Inertia;
+use Inertia\Response as InertiaResponse;
 
 class ContactFormController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function indexSuperAdmin(): InertiaResponse
     {
-        //
+        $contactForms = ContactForm::all();
+        return Inertia::render('super-admin/pages/contact-forms/index', [
+            'contactForms' => $contactForms,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function store(ContactFormRequest $request): RedirectResponse
     {
-        //
+        ContactForm::create($request->validated());
+        return redirect()->route('contact')->with('success', 'Pesan berhasil dikirim!');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(ContactForm $contactForm)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ContactForm $contactForm)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, ContactForm $contactForm)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(ContactForm $contactForm)
     {
         //

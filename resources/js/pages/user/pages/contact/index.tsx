@@ -1,26 +1,69 @@
 import { Footer } from '@/components/footer';
+import InputError from '@/components/input-error';
 import NavbarV3 from '@/components/navbar/navbar3';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { cn } from '@/lib/utils';
 import { Icon } from '@iconify/react';
+import { useForm } from '@inertiajs/react';
 import { motion } from 'framer-motion';
+import { toast } from 'sonner';
 
-export default function KontakModern() {
-    const contactItems = [
-        { icon: 'mdi:map-marker', title: 'Alamat', desc: 'Jl. A. Yani No.1, Pontianak, Kalimantan Barat' },
-        { icon: 'mdi:phone', title: 'Telepon', desc: '(0561) 123456' },
-        { icon: 'mdi:email-outline', title: 'Email', desc: 'info@polri.go.id' },
-        { icon: 'mdi:clock-outline', title: 'Jam Operasional', desc: 'Senin - Jumat: 08.00 - 16.00 WIB' },
-    ];
+type ContactForm = {
+    name: string;
+    email: string;
+    message: string;
+};
 
-    const socialMedia = [
-        { href: 'https://web.facebook.com/', icon: 'mdi:facebook' },
-        { href: 'https://www.instagram.com/', icon: 'mdi:instagram' },
-        { href: 'https://wa.me/6281347786363', icon: 'mdi:whatsapp' },
-    ];
+const contactItems = [
+    { icon: 'mdi:map-marker', title: 'Alamat', desc: 'Jl. A. Yani No.1, Pontianak, Kalimantan Barat' },
+    { icon: 'mdi:phone', title: 'Telepon', desc: '(0561) 123456' },
+    { icon: 'mdi:email-outline', title: 'Email', desc: 'info@polri.go.id' },
+    { icon: 'mdi:clock-outline', title: 'Jam Operasional', desc: 'Senin - Jumat: 08.00 - 16.00 WIB' },
+];
+
+const socialMedia = [
+    { href: 'https://web.facebook.com/', icon: 'mdi:facebook' },
+    { href: 'https://www.instagram.com/', icon: 'mdi:instagram' },
+    { href: 'https://wa.me/6281347786363', icon: 'mdi:whatsapp' },
+];
+
+export default function ContactPage() {
+    const { data, setData, post, processing, errors, reset } = useForm<Required<ContactForm>>({
+        name: '',
+        email: '',
+        message: '',
+    });
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        post(route('contact.store'), {
+            onSuccess: () => {
+                toast.success('Success', {
+                    description: 'Masukkan anda berhasil dikirim!',
+                    action: {
+                        label: 'Tutup',
+                        onClick: () => toast.dismiss(),
+                    },
+                });
+                reset();
+            },
+            onError: (error) => {
+                Object.keys(error).forEach((key) => {
+                    toast.error('Error', {
+                        description: error[key],
+                        action: {
+                            label: 'Tutup',
+                            onClick: () => toast.dismiss(),
+                        },
+                    });
+                });
+            },
+        });
+    };
 
     return (
         <>
@@ -101,42 +144,69 @@ export default function KontakModern() {
                                     <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white">Formulir Kontak</CardTitle>
                                 </CardHeader>
                                 <CardContent>
-                                    <form className="space-y-6">
+                                    <form className="space-y-6" onSubmit={handleSubmit}>
                                         {/* Nama Lengkap */}
                                         <div className="space-y-2">
-                                            <Label className="text-sm text-gray-700 dark:text-gray-300">Nama Lengkap</Label>
+                                            <Label className="text-sm text-gray-700 dark:text-gray-300">
+                                                Nama Lengkap <span className="text-red-500">*</span>
+                                            </Label>
                                             <Input
-                                                placeholder="Masukkan nama lengkap"
-                                                className="mt-2 border-gray-300 bg-white py-6 text-gray-900 placeholder-gray-400 shadow-none dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+                                                id="name"
+                                                type="text"
+                                                autoFocus
+                                                tabIndex={1}
+                                                autoComplete="name"
+                                                value={data.name}
+                                                onChange={(e) => setData('name', e.target.value)}
+                                                placeholder="Masukkan nama anda"
+                                                className={cn('mt-2 rounded-md px-4 py-6', errors.name && 'border border-red-500')}
                                             />
+                                            <InputError message={errors.name} className="mt-2" />
                                         </div>
 
                                         {/* Email */}
                                         <div className="space-y-2">
-                                            <Label className="text-sm text-gray-700 dark:text-gray-300">Email</Label>
+                                            <Label className="text-sm text-gray-700 dark:text-gray-300">
+                                                Email <span className="text-red-500">*</span>
+                                            </Label>
                                             <Input
+                                                id="email"
                                                 type="email"
-                                                placeholder="Masukkan email"
-                                                className="mt-2 border-gray-300 bg-white py-6 text-gray-900 placeholder-gray-400 shadow-none dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+                                                autoFocus
+                                                tabIndex={1}
+                                                autoComplete="email"
+                                                value={data.email}
+                                                onChange={(e) => setData('email', e.target.value)}
+                                                placeholder="Masukkan email anda"
+                                                className={cn('mt-2 rounded-md px-4 py-6', errors.email && 'border border-red-500')}
                                             />
                                         </div>
 
                                         {/* Pesan */}
                                         <div className="space-y-2">
-                                            <Label className="text-sm text-gray-700 dark:text-gray-300">Pesan</Label>
+                                            <Label className="text-sm text-gray-700 dark:text-gray-300">
+                                                Pesan <span className="text-red-500">*</span>
+                                            </Label>
                                             <Textarea
+                                                id="message"
                                                 placeholder="Tulis pesan Anda"
-                                                className="mt-2 min-h-[120px] border-gray-300 bg-white text-gray-900 placeholder-gray-400 shadow-none dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+                                                className={cn('mt-2 min-h-32 rounded-md p-4', errors.message && 'border border-red-500')}
+                                                value={data.message}
+                                                onChange={(e) => setData('message', e.target.value)}
+                                                tabIndex={3}
+                                                autoComplete="message"
                                             />
+                                            <InputError message={errors.message} className="mt-2" />
                                         </div>
 
                                         {/* Tombol Submit */}
                                         <Button
                                             type="submit"
+                                            disabled={processing}
                                             className="flex w-full cursor-pointer items-center gap-2 bg-gradient-to-r from-blue-500 to-cyan-500 py-6 text-white transition-all hover:bg-gradient-to-r hover:from-blue-600 hover:to-cyan-600"
                                         >
                                             <Icon icon="mdi:send" className="mr-2 h-5 w-5" />
-                                            Kirim Pesan
+                                            {processing ? 'Loading...' : 'Kirim'}
                                         </Button>
                                     </form>
                                 </CardContent>
