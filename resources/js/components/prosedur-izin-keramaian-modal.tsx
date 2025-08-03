@@ -1,16 +1,12 @@
-import Banner1 from '@/assets/images/banners/skck/banner-1.png';
-import Banner2 from '@/assets/images/banners/skck/banner-2.png';
-import Banner3 from '@/assets/images/banners/skck/banner-3.png';
-import Banner4 from '@/assets/images/banners/skck/banner-4.png';
-import Banner5 from '@/assets/images/banners/skck/banner-5.png';
-import Banner6 from '@/assets/images/banners/skck/banner-6.png';
+import Banner1 from '@/assets/images/banners/izin-keramaian/banner-1.png';
+import Banner2 from '@/assets/images/banners/izin-keramaian/banner-2.png';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Icon } from '@iconify/react';
 import { ScrollArea } from './ui/scroll-area';
 
-export default function ProsedurSKCKModal() {
-    const prosedurImages = [Banner1, Banner2, Banner3, Banner4, Banner5, Banner6];
+export default function ProsedurIzinKeramaianModal() {
+    const prosedurImages = [Banner1, Banner2];
 
     return (
         <Dialog>
@@ -22,14 +18,14 @@ export default function ProsedurSKCKModal() {
                     className="flex cursor-pointer items-center gap-2 bg-gradient-to-r from-blue-500 to-cyan-500 py-6 text-white transition-all hover:bg-gradient-to-r hover:from-blue-600 hover:to-cyan-600"
                 >
                     <Icon icon="mdi:file-document-outline" className="h-5 w-5" />
-                    Lihat Prosedur SKCK
+                    Lihat Prosedur Izin Keramaian
                 </Button>
             </DialogTrigger>
 
             {/* Konten Modal */}
             <DialogContent className="border border-gray-200 bg-white text-gray-900 sm:max-w-7xl dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
                 <DialogHeader>
-                    <DialogTitle className="text-xl font-bold">Prosedur Pembuatan SKCK</DialogTitle>
+                    <DialogTitle className="text-xl font-bold">Prosedur Pembuatan Izin Keramaian</DialogTitle>
                 </DialogHeader>
 
                 {/* Scroll Area */}

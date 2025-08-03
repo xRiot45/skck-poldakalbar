@@ -1,71 +1,66 @@
 import { Footer } from '@/components/footer';
 import NavbarV3 from '@/components/navbar/navbar3';
-import ProsedurIzinKeramaianModal from '@/components/prosedur-izin-keramaian-modal';
+import ProsedurSendakModal from '@/components/prosedur-sendak-modal';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
 
-const mekanismeSteps = [
+const senpiTimeline = [
     {
-        title: 'Permohonan',
-        desc: `Memuat paling sedikit: Tujuan & sifat giat, tempat & waktu, jumlah peserta, penjab giat. 
-    Diajukan elektronik atau langsung di loket. 
-    Permohonan paling lambat:
-    - 14 hari kerja skala daerah
-    - 21 hari kerja skala nasional
-    - 30 hari kerja skala internasional`,
+        title: 'Rekomendasi Izin Pembelian',
+        desc: `1. Surat permohonan
+2. Identitas senjata api
+3. Data lokasi objek yang dikelola dengan menjelaskan ancaman yang dihadapi
+4. Data anggota Polsus
+5. Data senpi yang sudah dimiliki
+6. Rencana pendistribusian
+7. Fotokopi KTP penanggung jawab
+8. SKCK penanggung jawab`,
         icon: 'mdi:clipboard-text',
         color: 'from-blue-400 to-cyan-500',
     },
     {
-        title: 'Pencatatan',
-        desc: `Dilakukan secara elektronik atau manual. Mencatat nomor urut, tanggal surat diterima, nomor & tanggal surat permohonan, nama pemohon, bentuk giat, skala giat, serta tanggal & tempat giat.`,
-        icon: 'mdi:file-document-edit',
+        title: 'Ijin Penguasaan Pinjam Pakai (Kartu Pengpin)',
+        desc: `1. Surat permohonan
+2. Surat perintah tugas dari pimpinan instansi
+3. FC Buku pas senjata api
+4. FC KTA Polsus
+5. FC Sket mahir menembak
+6. FC Sket kesehatan
+7. FC Hasil tes psikologi
+8. FC KTP
+9. FC SKCK
+10. Pasfoto latar merah 2x3 (2 lembar) & 4x6 (2 lembar)
+11. Membayar biaya PNBP Rp. 50.000,- / kartu`,
+        icon: 'mdi:id-card',
         color: 'from-purple-400 to-pink-500',
     },
     {
-        title: 'Riksa ADM',
-        desc: `Petugas melakukan verifikasi dokumen persyaratan administrasi. 
-    Jika lengkap, diberikan tanda bukti penerimaan. Jika tidak lengkap, harus diperbaiki/dilengkapi.`,
-        icon: 'mdi:magnify-scan',
+        title: 'Izin Membawa dan/atau Penggunaan',
+        desc: `1. Surat permohonan
+2. Surat perintah tugas dari pimpinan instansi
+3. Data senjata api yang digunakan
+4. FC Kartu Pengpin
+5. FC Buku pas senjata api`,
+        icon: 'mdi:shield-check',
         color: 'from-green-400 to-teal-500',
     },
     {
-        title: 'Koordinasi',
-        desc: `Dilakukan dengan internal Polri, instansi pemerintah, & pihak lain melalui rapat koordinasi, survei lokasi, dan rekomendasi (Polres untuk skala provinsi, Polda untuk skala nasional/internasional). 
-    Jika ada masalah, penolakan disertai alasan.`,
-        icon: 'mdi:account-group',
+        title: 'Rekomendasi Pembaruan Buku Pas',
+        desc: `1. Surat permohonan
+2. FC KTP & KK penanggung jawab senpi
+3. FC Skep jabatan penanggung jawab senpi
+4. FC KTA Satpam/Polsus
+5. SKCK penanggung jawab senpi
+6. Cek fisik senpi
+7. Buku pas senpi yang lama
+8. Pasfoto latar merah ukuran 4x6 sebanyak buku yang diajukan`,
+        icon: 'mdi:book-refresh',
         color: 'from-orange-400 to-amber-500',
     },
-    {
-        title: 'Penerbitan',
-        desc: `Penerbitan izin paling lama:
-    - 4 hari kerja skala daerah
-    - 7 hari kerja skala nasional
-    - 14 hari kerja skala internasional`,
-        icon: 'mdi:check-decagram',
-        color: 'from-pink-400 to-rose-500',
-    },
-    {
-        title: 'Penyerahan',
-        desc: `Dapat diunduh via aplikasi elektronik atau diberikan setelah tanda terima. 
-    Perubahan wajib diberitahukan paling lambat H-3 sebelum kegiatan.`,
-        icon: 'mdi:cloud-download',
-        color: 'from-cyan-400 to-blue-500',
-    },
 ];
 
-const persyaratanIzin = [
-    'Daftar susunan panpel',
-    'Persetujuan dari penjab tempat giat',
-    'Rekomendasi & instansi/organisasi terkait',
-    'Pernyataan tertulis penyelenggara bahwa kegiatan tidak bertentangan dengan norma agama, kesusilaan, kesopanan & ketentuan peraturan perundangan',
-    'Fotokopi AD/ART jika penyelenggara organisasi',
-    'Fotokopi paspor &/atau visa jika giat melibatkan orang asing',
-    'Fotokopi surat kuasa bermaterai jika permohonan dikuasakan',
-];
-
-export default function IzinKeramaianPage() {
+export default function SendakPage() {
     return (
         <>
             <NavbarV3 />
@@ -83,7 +78,7 @@ export default function IzinKeramaianPage() {
                             transition={{ duration: 0.7 }}
                             className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-5xl font-extrabold text-transparent uppercase"
                         >
-                            Mekanisme & Persyaratan Izin Keramaian
+                            Prosedur Persyaratan Izin Senjata Api Polsus
                         </motion.h1>
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
@@ -91,20 +86,21 @@ export default function IzinKeramaianPage() {
                             transition={{ duration: 0.8, delay: 0.2 }}
                             className="mx-auto mt-6 max-w-2xl text-lg text-gray-300"
                         >
-                            Berdasarkan Peraturan Kepolisian Terbaru
+                            Berdasarkan Perpol Nomor 1 Tahun 2022 tentang Perizinan, Pengawasan dan Pengendalian Senjata Api
                         </motion.p>
                     </div>
                 </div>
 
-                {/* TIMELINE MEKANISME */}
+                {/* TIMELINE */}
                 <div className="mx-auto max-w-6xl px-6 py-20">
-                    <h2 className="mb-12 text-center text-3xl font-bold">Mekanisme Penerbitan Izin Keramaian</h2>
+                    <h2 className="mb-12 text-center text-3xl font-bold">Tahapan Persyaratan</h2>
+
                     <div className="relative mx-auto max-w-4xl">
-                        {/* Connector line */}
+                        {/* Garis vertikal */}
                         <div className="absolute top-0 left-6 block h-full w-[3px] bg-gradient-to-b from-blue-400 via-purple-400 to-pink-400" />
 
                         <div className="flex flex-col space-y-10">
-                            {mekanismeSteps.map((step, idx) => (
+                            {senpiTimeline.map((step, idx) => (
                                 <motion.div
                                     key={idx}
                                     initial={{ opacity: 0, y: 30 }}
@@ -134,32 +130,8 @@ export default function IzinKeramaianPage() {
                         </div>
                     </div>
                 </div>
-
-                <div className="flex items-center justify-center">
-                    <ProsedurIzinKeramaianModal />
-                </div>
-
-                {/* PERSYARATAN */}
-                <div className="mx-auto max-w-7xl px-6 py-20">
-                    <h2 className="mb-10 text-center text-3xl font-bold">Persyaratan Izin Keramaian</h2>
-                    <Card className="border bg-card/50 shadow-none backdrop-blur-xl">
-                        <CardContent className="py-6">
-                            <ul className="list-inside list-disc space-y-3 text-muted-foreground">
-                                {persyaratanIzin.map((item, idx) => (
-                                    <motion.li
-                                        key={idx}
-                                        initial={{ opacity: 0, x: -20 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 0.3, delay: idx * 0.05 }}
-                                        className="leading-relaxed"
-                                    >
-                                        {item}
-                                    </motion.li>
-                                ))}
-                            </ul>
-                        </CardContent>
-                    </Card>
+                <div className="mb-10 flex items-center justify-center">
+                    <ProsedurSendakModal />
                 </div>
             </section>
 

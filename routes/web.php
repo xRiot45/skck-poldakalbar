@@ -31,7 +31,11 @@ Route::get('/skck', function () {
 
 Route::get('/izin-keramaian', function () {
     return Inertia::render('user/pages/izin-keramaian/index');
-});
+})->name('izin-keramaian');
+
+Route::get('/sendak', function () {
+    return Inertia::render('user/pages/sendak/index');
+})->name('sendak');
 
 Route::get('/kontak', function () {
     return Inertia::render('contact/contact');
