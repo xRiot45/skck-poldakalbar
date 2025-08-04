@@ -1,7 +1,6 @@
-import { Footer } from '@/components/footer';
-import NavbarV3 from '@/components/navbar/navbar3';
 import ServiceSectionV2 from '@/components/service-section/service-section2';
 import StatisticSectionV3 from '@/components/statistic-section/statistic-section3';
+import UserLayout from '@/layouts/user';
 import { Gallery } from '@/models/gallery-management/gallery';
 import { News } from '@/models/news-management/news';
 import { Video } from '@/models/video-management/video';
@@ -19,14 +18,14 @@ interface HomepageProps {
 export default function Homepage({ galleries, videos, news }: HomepageProps) {
     return (
         <>
-            <NavbarV3 />
-            <HeroSection />
-            <ServiceSectionV2 />
-            <StatisticSectionV3 />
-            <VideoSection videos={videos} />
-            <GallerySection galleries={galleries} />
-            <NewsSection news={news} />
-            <Footer />
+            <UserLayout>
+                <HeroSection />
+                <ServiceSectionV2 />
+                <StatisticSectionV3 />
+                <VideoSection videos={videos} />
+                <GallerySection galleries={galleries} />
+                <NewsSection news={news} />
+            </UserLayout>
         </>
     );
 }
