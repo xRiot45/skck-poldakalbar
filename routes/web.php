@@ -1,63 +1,73 @@
 <?php
 
-use App\Http\Controllers\ContactFormController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\GalleryCategoryController;
-use App\Http\Controllers\GalleryController;
-use App\Http\Controllers\MissionController;
-use App\Http\Controllers\NewsCategoryController;
-use App\Http\Controllers\NewsController;
-use App\Http\Controllers\OrganizationalFunctionController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\TaskController;
-use App\Http\Controllers\User\HomepageController;
-use App\Http\Controllers\User\ProfileController;
-use App\Http\Controllers\User\VisionMissionController;
-use App\Http\Controllers\VideoCategoryController;
-use App\Http\Controllers\VideoController;
-use App\Http\Controllers\VisionController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
+use App\Http\Controllers\User\{
+    HomepageController,
+    VisionMissionController,
+    ProfileController
+};
+use App\Http\Controllers\{
+    ContactFormController,
+    DashboardController,
+    GalleryCategoryController,
+    GalleryController,
+    MissionController,
+    NewsCategoryController,
+    NewsController,
+    OrganizationalFunctionController,
+    RoleController,
+    TaskController,
+    VideoCategoryController,
+    VideoController,
+    VisionController
+};
 
-Route::get('/', [HomepageController::class, 'index'])->name('homepage');
-Route::get('/visi-misi', [VisionMissionController::class, 'index'])->name('visi-misi');
-Route::get('/profil', [ProfileController::class, 'index'])->name('profil');
-Route::get('/berita', [NewsController::class, 'indexUser'])->name('berita');
-Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('news.show');
-Route::get('/galeri', [GalleryController::class, 'indexUser'])->name('galeri');
+/*
+|--------------------------------------------------------------------------
+| USER ROUTES
+|--------------------------------------------------------------------------
+*/
 
-Route::get('/skck', function () {
-    return Inertia::render('user/pages/skck/index');
-})->name('skck');
+Route::middleware('log.visitor')->group(function () {
+    Route::get('/', [HomepageController::class, 'index'])->name('homepage');
+    Route::get('/visi-misi', [VisionMissionController::class, 'index'])->name('visi-misi');
+    Route::get('/profil', [ProfileController::class, 'index'])->name('profil');
 
-Route::get('/izin-keramaian', function () {
-    return Inertia::render('user/pages/izin-keramaian/index');
-})->name('izin-keramaian');
+    // News
+    Route::get('/berita', [NewsController::class, 'indexUser'])->name('berita');
+    Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('news.show');
 
-Route::get('/sendak', function () {
-    return Inertia::render('user/pages/sendak/index');
-})->name('sendak');
+    // Gallery
+    Route::get('/galeri', [GalleryController::class, 'indexUser'])->name('galeri');
 
-Route::get('/kontak', function () {
-    return Inertia::render('user/pages/contact/index');
-})->name('contact');
+    // Static Pages
+    Route::inertia('/skck', 'user/pages/skck/index')->name('skck');
+    Route::inertia('/izin-keramaian', 'user/pages/izin-keramaian/index')->name('izin-keramaian');
+    Route::inertia('/sendak', 'user/pages/sendak/index')->name('sendak');
+    Route::inertia('/kontak', 'user/pages/contact/index')->name('contact');
 
-Route::post('/contact', [ContactFormController::class, 'store'])->name('contact.store');
-
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', function () {
-        return Inertia::render('dashboard');
-    })->name('dashboard');
+    // Contact Form
+    Route::post('/contact', [ContactFormController::class, 'store'])->name('contact.store');
 });
 
-// ADMIN ROUTES
-Route::middleware(['auth', 'verified', 'role:super-admin'])->group(function () {
-    Route::get('/super-admin/dashboard', [DashboardController::class, 'indexSuperAdmin'])->name('super-admin.dashboard');
+/*
+|--------------------------------------------------------------------------
+| ADMIN ROUTES
+|--------------------------------------------------------------------------
+*/
+Route::prefix('super-admin')
+    ->middleware(['auth', 'verified', 'role:super-admin'])
+    ->group(function () {
 
-    // RBAC Management
-    Route::prefix('/super-admin/access-control-management')->group(function () {
-        // Roles
-        Route::prefix('/roles')
+        // Dashboard
+        Route::get('/dashboard', [DashboardController::class, 'indexSuperAdmin'])->name('super-admin.dashboard');
+
+        /*
+        |-----------------------------
+        | Access Control Management
+        |-----------------------------
+        */
+        Route::prefix('access-control-management/roles')
             ->controller(RoleController::class)
             ->group(function () {
                 Route::get('/', 'indexSuperAdmin')->name('super-admin.roles.index');
@@ -68,151 +78,171 @@ Route::middleware(['auth', 'verified', 'role:super-admin'])->group(function () {
                 Route::delete('/delete/{id}', 'destroy')->name('super-admin.roles.destroy');
                 Route::delete('/delete-all', 'destroy_all')->name('super-admin.roles.destroy_all');
             });
-    });
 
-    // Profile Management
-    Route::prefix('/super-admin/profile-management')->group(function () {
-        // Vision
-        Route::prefix('/vision')
-            ->controller(VisionController::class)
-            ->group(function () {
-                Route::get('/', 'indexSuperAdmin')->name('super-admin.vision.index');
-                Route::get('/create', 'create')->name('super-admin.vision.create');
-                Route::post('/create', 'store')->name('super-admin.vision.store');
-                Route::get('/edit/{vision}', 'edit')->name('super-admin.vision.edit');
-                Route::put('/edit/{vision}', 'update')->name('super-admin.vision.update');
-                Route::delete('/delete/{vision}', 'destroy')->name('super-admin.vision.destroy');
-            });
+        /*
+        |-----------------------------
+        | Profile Management
+        |-----------------------------
+        */
+        Route::prefix('profile-management')->group(function () {
 
-        // Mission
-        Route::prefix('/mission')
-            ->controller(MissionController::class)
-            ->group(function () {
-                Route::get('/', 'indexSuperAdmin')->name('super-admin.mission.index');
-                Route::get('/create', 'create')->name('super-admin.mission.create');
-                Route::post('/create', 'store')->name('super-admin.mission.store');
-                Route::get('/edit/{mission}', 'edit')->name('super-admin.mission.edit');
-                Route::put('/edit/{mission}', 'update')->name('super-admin.mission.update');
-                Route::delete('/delete/{mission}', 'destroy')->name('super-admin.mission.destroy');
-            });
+            // Vision
+            Route::prefix('vision')
+                ->controller(VisionController::class)
+                ->group(function () {
+                    Route::get('/', 'indexSuperAdmin')->name('super-admin.vision.index');
+                    Route::get('/create', 'create')->name('super-admin.vision.create');
+                    Route::post('/create', 'store')->name('super-admin.vision.store');
+                    Route::get('/edit/{vision}', 'edit')->name('super-admin.vision.edit');
+                    Route::put('/edit/{vision}', 'update')->name('super-admin.vision.update');
+                    Route::delete('/delete/{vision}', 'destroy')->name('super-admin.vision.destroy');
+                });
 
-        // Task
-        Route::prefix('/task')
-            ->controller(TaskController::class)
-            ->group(function () {
-                Route::get('/', 'indexSuperAdmin')->name('super-admin.task.index');
-                Route::get('/create', 'create')->name('super-admin.task.create');
-                Route::post('/create', 'store')->name('super-admin.task.store');
-                Route::get('/edit/{task}', 'edit')->name('super-admin.task.edit');
-                Route::put('/edit/{task}', 'update')->name('super-admin.task.update');
-                Route::delete('/delete/{task}', 'destroy')->name('super-admin.task.destroy');
-            });
+            // Mission
+            Route::prefix('mission')
+                ->controller(MissionController::class)
+                ->group(function () {
+                    Route::get('/', 'indexSuperAdmin')->name('super-admin.mission.index');
+                    Route::get('/create', 'create')->name('super-admin.mission.create');
+                    Route::post('/create', 'store')->name('super-admin.mission.store');
+                    Route::get('/edit/{mission}', 'edit')->name('super-admin.mission.edit');
+                    Route::put('/edit/{mission}', 'update')->name('super-admin.mission.update');
+                    Route::delete('/delete/{mission}', 'destroy')->name('super-admin.mission.destroy');
+                });
 
-        // Organizational Function
-        Route::prefix('/organizational-function')
-            ->controller(OrganizationalFunctionController::class)
-            ->group(function () {
-                Route::get('/', 'indexSuperAdmin')->name('super-admin.organizational-function.index');
-                Route::get('/create', 'create')->name('super-admin.organizational-function.create');
-                Route::post('/create', 'store')->name('super-admin.organizational-function.store');
-                Route::get('/edit/{organizational_function}', 'edit')->name('super-admin.organizational-function.edit');
-                Route::put('/edit/{organizational_function}', 'update')->name('super-admin.organizational-function.update');
-                Route::delete('/delete/{organizational_function}', 'destroy')->name('super-admin.organizational-function.destroy');
-            });
-    });
+            // Task
+            Route::prefix('task')
+                ->controller(TaskController::class)
+                ->group(function () {
+                    Route::get('/', 'indexSuperAdmin')->name('super-admin.task.index');
+                    Route::get('/create', 'create')->name('super-admin.task.create');
+                    Route::post('/create', 'store')->name('super-admin.task.store');
+                    Route::get('/edit/{task}', 'edit')->name('super-admin.task.edit');
+                    Route::put('/edit/{task}', 'update')->name('super-admin.task.update');
+                    Route::delete('/delete/{task}', 'destroy')->name('super-admin.task.destroy');
+                });
 
-    // Gallery Management
-    Route::prefix('/super-admin/gallery-management')->group(function () {
-        // Gallery Categories
-        Route::prefix('/gallery-categories')
-            ->controller(GalleryCategoryController::class)
-            ->group(function () {
-                Route::get('/', 'indexSuperAdmin')->name('super-admin.gallery-categories.index');
-                Route::get('/create', 'create')->name('super-admin.gallery-categories.create');
-                Route::post('/create', 'store')->name('super-admin.gallery-categories.store');
-                Route::get('/edit/{gallery_category}', 'edit')->name('super-admin.gallery-categories.edit');
-                Route::put('/edit/{gallery_category}', 'update')->name('super-admin.gallery-categories.update');
-                Route::delete('/delete/{gallery_category}', 'destroy')->name('super-admin.gallery-categories.destroy');
-            });
+            // Organizational Function
+            Route::prefix('organizational-function')
+                ->controller(OrganizationalFunctionController::class)
+                ->group(function () {
+                    Route::get('/', 'indexSuperAdmin')->name('super-admin.organizational-function.index');
+                    Route::get('/create', 'create')->name('super-admin.organizational-function.create');
+                    Route::post('/create', 'store')->name('super-admin.organizational-function.store');
+                    Route::get('/edit/{organizational_function}', 'edit')->name('super-admin.organizational-function.edit');
+                    Route::put('/edit/{organizational_function}', 'update')->name('super-admin.organizational-function.update');
+                    Route::delete('/delete/{organizational_function}', 'destroy')->name('super-admin.organizational-function.destroy');
+                });
+        });
 
-        // Galleries
-        Route::prefix('/galleries')
-            ->controller(GalleryController::class)
-            ->group(function () {
-                Route::get('/', 'indexSuperAdmin')->name('super-admin.galleries.index');
-                Route::get('/create', 'create')->name('super-admin.galleries.create');
-                Route::post('/create', 'store')->name('super-admin.galleries.store');
-                Route::get('/edit/{gallery}', 'edit')->name('super-admin.galleries.edit');
-                Route::put('/edit/{gallery}', 'update')->name('super-admin.galleries.update');
-                Route::delete('/delete/{gallery}', 'destroy')->name('super-admin.galleries.destroy');
-            });
-    });
+        /*
+        |-----------------------------
+        | Gallery Management
+        |-----------------------------
+        */
+        Route::prefix('gallery-management')->group(function () {
 
-    // Video Management
-    Route::prefix('/super-admin/video-management')->group(function () {
-        // Video Categories
-        Route::prefix('/video-categories')
-            ->controller(VideoCategoryController::class)
-            ->group(function () {
-                Route::get('/', 'indexSuperAdmin')->name('super-admin.video-categories.index');
-                Route::get('/create', 'create')->name('super-admin.video-categories.create');
-                Route::post('/create', 'store')->name('super-admin.video-categories.store');
-                Route::get('/edit/{video_category}', 'edit')->name('super-admin.video-categories.edit');
-                Route::put('/edit/{video_category}', 'update')->name('super-admin.video-categories.update');
-                Route::delete('/delete/{video_category}', 'destroy')->name('super-admin.video-categories.destroy');
-            });
+            // Gallery Categories
+            Route::prefix('gallery-categories')
+                ->controller(GalleryCategoryController::class)
+                ->group(function () {
+                    Route::get('/', 'indexSuperAdmin')->name('super-admin.gallery-categories.index');
+                    Route::get('/create', 'create')->name('super-admin.gallery-categories.create');
+                    Route::post('/create', 'store')->name('super-admin.gallery-categories.store');
+                    Route::get('/edit/{gallery_category}', 'edit')->name('super-admin.gallery-categories.edit');
+                    Route::put('/edit/{gallery_category}', 'update')->name('super-admin.gallery-categories.update');
+                    Route::delete('/delete/{gallery_category}', 'destroy')->name('super-admin.gallery-categories.destroy');
+                });
 
-        // Videos
-        Route::prefix('/videos')
-            ->controller(VideoController::class)
-            ->group(function () {
-                Route::get('/', 'indexSuperAdmin')->name('super-admin.videos.index');
-                Route::get('/create', 'create')->name('super-admin.videos.create');
-                Route::post('/create', 'store')->name('super-admin.videos.store');
-                Route::get('/edit/{video}', 'edit')->name('super-admin.videos.edit');
-                Route::put('/edit/{video}', 'update')->name('super-admin.videos.update');
-                Route::delete('/delete/{video}', 'destroy')->name('super-admin.videos.destroy');
-            });
-    });
+            // Galleries
+            Route::prefix('galleries')
+                ->controller(GalleryController::class)
+                ->group(function () {
+                    Route::get('/', 'indexSuperAdmin')->name('super-admin.galleries.index');
+                    Route::get('/create', 'create')->name('super-admin.galleries.create');
+                    Route::post('/create', 'store')->name('super-admin.galleries.store');
+                    Route::get('/edit/{gallery}', 'edit')->name('super-admin.galleries.edit');
+                    Route::put('/edit/{gallery}', 'update')->name('super-admin.galleries.update');
+                    Route::delete('/delete/{gallery}', 'destroy')->name('super-admin.galleries.destroy');
+                });
+        });
 
-    // News Management
-    Route::prefix('/super-admin/news-management')->group(function () {
-        // News Categories
-        Route::prefix('/news-categories')
-            ->controller(NewsCategoryController::class)
-            ->group(function () {
-                Route::get('/', 'indexSuperAdmin')->name('super-admin.news-categories.index');
-                Route::get('/create', 'create')->name('super-admin.news-categories.create');
-                Route::post('/create', 'store')->name('super-admin.news-categories.store');
-                Route::get('/edit/{news_category}', 'edit')->name('super-admin.news-categories.edit');
-                Route::put('/edit/{news_category}', 'update')->name('super-admin.news-categories.update');
-                Route::delete('/delete/{news_category}', 'destroy')->name('super-admin.news-categories.destroy');
-            });
+        /*
+        |-----------------------------
+        | Video Management
+        |-----------------------------
+        */
+        Route::prefix('video-management')->group(function () {
 
-        // News
-        Route::prefix('/news')
-            ->controller(NewsController::class)
-            ->group(function () {
-                Route::get('/', 'indexSuperAdmin')->name('super-admin.news.index');
-                Route::get('/create', 'create')->name('super-admin.news.create');
-                Route::post('/create', 'store')->name('super-admin.news.store');
-                Route::get('/edit/{news}', 'edit')->name('super-admin.news.edit');
-                Route::put('/edit/{news}', 'update')->name('super-admin.news.update');
-                Route::delete('/delete/{news}', 'destroy')->name('super-admin.news.destroy');
-            });
-    });
+            // Video Categories
+            Route::prefix('video-categories')
+                ->controller(VideoCategoryController::class)
+                ->group(function () {
+                    Route::get('/', 'indexSuperAdmin')->name('super-admin.video-categories.index');
+                    Route::get('/create', 'create')->name('super-admin.video-categories.create');
+                    Route::post('/create', 'store')->name('super-admin.video-categories.store');
+                    Route::get('/edit/{video_category}', 'edit')->name('super-admin.video-categories.edit');
+                    Route::put('/edit/{video_category}', 'update')->name('super-admin.video-categories.update');
+                    Route::delete('/delete/{video_category}', 'destroy')->name('super-admin.video-categories.destroy');
+                });
 
-    // Contact Management
-    Route::prefix('/super-admin/contact-management')->group(function () {
-        // Contacts Form
-        Route::prefix('/contacts-form')
+            // Videos
+            Route::prefix('videos')
+                ->controller(VideoController::class)
+                ->group(function () {
+                    Route::get('/', 'indexSuperAdmin')->name('super-admin.videos.index');
+                    Route::get('/create', 'create')->name('super-admin.videos.create');
+                    Route::post('/create', 'store')->name('super-admin.videos.store');
+                    Route::get('/edit/{video}', 'edit')->name('super-admin.videos.edit');
+                    Route::put('/edit/{video}', 'update')->name('super-admin.videos.update');
+                    Route::delete('/delete/{video}', 'destroy')->name('super-admin.videos.destroy');
+                });
+        });
+
+        /*
+        |-----------------------------
+        | News Management
+        |-----------------------------
+        */
+        Route::prefix('news-management')->group(function () {
+
+            // News Categories
+            Route::prefix('news-categories')
+                ->controller(NewsCategoryController::class)
+                ->group(function () {
+                    Route::get('/', 'indexSuperAdmin')->name('super-admin.news-categories.index');
+                    Route::get('/create', 'create')->name('super-admin.news-categories.create');
+                    Route::post('/create', 'store')->name('super-admin.news-categories.store');
+                    Route::get('/edit/{news_category}', 'edit')->name('super-admin.news-categories.edit');
+                    Route::put('/edit/{news_category}', 'update')->name('super-admin.news-categories.update');
+                    Route::delete('/delete/{news_category}', 'destroy')->name('super-admin.news-categories.destroy');
+                });
+
+            // News
+            Route::prefix('news')
+                ->controller(NewsController::class)
+                ->group(function () {
+                    Route::get('/', 'indexSuperAdmin')->name('super-admin.news.index');
+                    Route::get('/create', 'create')->name('super-admin.news.create');
+                    Route::post('/create', 'store')->name('super-admin.news.store');
+                    Route::get('/edit/{news}', 'edit')->name('super-admin.news.edit');
+                    Route::put('/edit/{news}', 'update')->name('super-admin.news.update');
+                    Route::delete('/delete/{news}', 'destroy')->name('super-admin.news.destroy');
+                });
+        });
+
+        /*
+        |-----------------------------
+        | Contact Management
+        |-----------------------------
+        */
+        Route::prefix('contact-management/contacts-form')
             ->controller(ContactFormController::class)
             ->group(function () {
                 Route::get('/', 'indexSuperAdmin')->name('super-admin.contacts-form.index');
                 Route::delete('/delete/{contact}', 'destroy')->name('super-admin.contacts-form.destroy');
             });
     });
-});
 
 require __DIR__ . '/settings.php';
 require __DIR__ . '/auth.php';
