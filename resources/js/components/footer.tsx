@@ -14,19 +14,19 @@ export function Footer() {
                     </p>
 
                     <div className="mt-6 flex items-center gap-6">
-                        <Link href="https://www.instagram.com/">
+                        <Link href="https://www.instagram.com/skckpoldakalbar/">
                             <Icon icon="akar-icons:instagram-fill" className="h-4 w-4" />
                         </Link>
-                        <Link href="https://twitter.com/">
-                            <Icon icon="akar-icons:twitter-fill" className="h-4 w-4" />
+                        <Link href="https://wa.me/6281347786363">
+                            <Icon icon="akar-icons:whatsapp-fill" className="h-4 w-4" />
                         </Link>
-                        <Link href="https://www.facebook.com/">
+                        <Link href="https://web.facebook.com/profile.php?id=61551044680803">
                             <Icon icon="akar-icons:facebook-fill" className="h-4 w-4" />
                         </Link>
                         <Link href="https://www.tiktok.com/">
                             <Icon icon="akar-icons:tiktok-fill" className="h-4 w-4" />
                         </Link>
-                        <Link href="https://www.youtube.com/">
+                        <Link href="https://www.youtube.com/@SKCKPoldaKalbar">
                             <Icon icon="akar-icons:youtube-fill" className="h-4 w-4" />
                         </Link>
                     </div>

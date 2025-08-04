@@ -19,16 +19,17 @@ type ContactForm = {
 };
 
 const contactItems = [
-    { icon: 'mdi:map-marker', title: 'Alamat', desc: 'Jl. A. Yani No.1, Pontianak, Kalimantan Barat' },
-    { icon: 'mdi:phone', title: 'Telepon', desc: '(0561) 123456' },
-    { icon: 'mdi:email-outline', title: 'Email', desc: 'info@polri.go.id' },
-    { icon: 'mdi:clock-outline', title: 'Jam Operasional', desc: 'Senin - Jumat: 08.00 - 16.00 WIB' },
+    { icon: 'mdi:map-marker', title: 'Alamat', desc: 'W9M6+329, Bangka Belitung Laut, Kec. Pontianak Tenggara, Kota Pontianak, Kalimantan Barat' },
+    { icon: 'mdi:phone', title: 'Telepon', desc: '+6281347786363' },
+    { icon: 'mdi:email-outline', title: 'Email', desc: 'yanminpoldakalbar@gmail.com' },
+    { icon: 'mdi:clock-outline', title: 'Jam Operasional', desc: 'Senin - Jumat: 08.00 - 14.30 WIB' },
 ];
 
 const socialMedia = [
-    { href: 'https://web.facebook.com/', icon: 'mdi:facebook' },
-    { href: 'https://www.instagram.com/', icon: 'mdi:instagram' },
+    { href: 'https://web.facebook.com/profile.php?id=61551044680803', icon: 'mdi:facebook' },
+    { href: 'https://www.instagram.com/skckpoldakalbar/', icon: 'mdi:instagram' },
     { href: 'https://wa.me/6281347786363', icon: 'mdi:whatsapp' },
+    { href: 'https://www.youtube.com/@SKCKPoldaKalbar', icon: 'mdi:youtube' },
 ];
 
 export default function ContactPage() {
