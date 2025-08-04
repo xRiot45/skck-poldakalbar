@@ -1,12 +1,14 @@
 import CardSummaryStatistics from '@/components/card-summary-statistic';
 import SuperAdminLayout from '@/layouts/super-admin';
 import { BreadcrumbItem } from '@/types';
+import VisitorsTrendChart from './components/visitors-trend-chart';
 
 interface DashboardSuperAdminPageProps {
     totalVisitors: number;
     totalNews: number;
     totalVideos: number;
     totalGalleries: number;
+    visitorsPerMonth: { month: string; total_visitors: number }[];
 }
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -16,7 +18,13 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function DashboardSuperAdminPage({ totalVisitors, totalNews, totalVideos, totalGalleries }: DashboardSuperAdminPageProps) {
+export default function DashboardSuperAdminPage({
+    totalVisitors,
+    totalNews,
+    totalVideos,
+    totalGalleries,
+    visitorsPerMonth,
+}: DashboardSuperAdminPageProps) {
     return (
         <SuperAdminLayout breadcrumbs={breadcrumbs}>
             <main className="p-6">
@@ -52,6 +60,10 @@ export default function DashboardSuperAdminPage({ totalVisitors, totalNews, tota
                         description="Jumlah total galeri yang dipublikasikan"
                         icon="mdi:image-multiple"
                     />
+                </div>
+
+                <div className="mt-10">
+                    <VisitorsTrendChart data={visitorsPerMonth} />
                 </div>
             </main>
         </SuperAdminLayout>
