@@ -17,6 +17,7 @@ class DashboardController extends Controller
         $totalNews = News::all();
         $totalVideos = Video::all();
         $totalGalleries = Gallery::all();
+
         return Inertia::render('super-admin/pages/dashboard/index', [
             'totalVisitors' => $totalVisitors->count(),
             'totalNews' => $totalNews->count(),
