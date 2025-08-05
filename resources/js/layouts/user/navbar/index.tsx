@@ -170,6 +170,8 @@ const Navbar = () => {
                                         </a>
                                     ),
                                 )}
+
+                                <ThemeToggle />
                             </div>
                         </SheetContent>
                     </Sheet>
