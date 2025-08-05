@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import UserLayout from '@/layouts/user';
 import { News } from '@/models/news-management/news';
@@ -46,7 +47,7 @@ export default function NewsDetail({ news }: NewsDetailProps) {
                                 initial={{ opacity: 0, scale: 1.05 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.6 }}
-                                className="relative h-60 w-full overflow-hidden sm:h-96"
+                                className="relative h-full w-full overflow-hidden"
                             >
                                 <img
                                     src={news.thumbnail}
@@ -95,7 +96,7 @@ export default function NewsDetail({ news }: NewsDetailProps) {
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ duration: 0.5 }}
-                                className="prose max-w-none prose-gray dark:prose-invert"
+                                className="prose max-w-none text-justify prose-gray dark:prose-invert"
                                 dangerouslySetInnerHTML={{ __html: news?.content || '' }}
                             />
                         </CardContent>
@@ -103,13 +104,13 @@ export default function NewsDetail({ news }: NewsDetailProps) {
 
                     {/* Action Buttons */}
                     <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
-                        <button
+                        <Button
                             onClick={() => window.history.back()}
-                            className="flex items-center gap-2 rounded-full border border-gray-300 bg-transparent px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
+                            className="flex cursor-pointer items-center gap-2 rounded-full border border-gray-300 bg-transparent px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
                         >
                             <Icon icon="mdi:arrow-left" className="h-4 w-4" />
                             Kembali
-                        </button>
+                        </Button>
 
                         <div className="flex gap-3">
                             <button className="flex items-center gap-2 rounded-full border border-gray-300 bg-transparent px-3 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800">
