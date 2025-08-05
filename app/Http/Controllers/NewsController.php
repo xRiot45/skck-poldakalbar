@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\NewsStatusEnum;
 use App\Http\Requests\NewsRequest;
 use App\Models\News;
 use App\Models\NewsCategory;
@@ -22,7 +23,7 @@ class NewsController extends Controller
 
     public function indexUser(): InertiaResponse
     {
-        $news = News::with('newsCategory')->get();
+        $news = News::with('newsCategory')->where('status', NewsStatusEnum::PUBLISHED)->get();
         $newsCategory = NewsCategory::all();
         return Inertia::render('user/pages/news/index', [
             'news' => $news,

@@ -18,7 +18,7 @@ interface NewsPageProps {
 export default function NewsPage({ news, newsCategory }: NewsPageProps) {
     const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
     const [searchQuery, setSearchQuery] = useState('');
-    const [sortOrder, setSortOrder] = useState<'none' | 'asc' | 'desc'>('none');
+    const [sortOrder, setSortOrder] = useState<'none' | 'date-asc' | 'date-desc'>('none');
 
     const filteredNews = news
         .filter((item) => {
@@ -27,8 +27,8 @@ export default function NewsPage({ news, newsCategory }: NewsPageProps) {
             return categoryMatch && searchMatch;
         })
         .sort((a, b) => {
-            if (sortOrder === 'asc') return a.views - b.views;
-            if (sortOrder === 'desc') return b.views - a.views;
+            if (sortOrder === 'date-asc') return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
+            if (sortOrder === 'date-desc') return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
             return 0;
         });
 
@@ -97,10 +97,6 @@ export default function NewsPage({ news, newsCategory }: NewsPageProps) {
                                                 <h3 className="text-2xl font-bold">{highlightNews[0].title}</h3>
                                                 <div className="mt-3 flex items-center gap-4 text-xs text-gray-300">
                                                     <span>{formatDate(highlightNews[0].created_at)}</span>
-                                                    <span className="flex items-center gap-1">
-                                                        <Icon icon="mdi:eye-outline" className="h-4 w-4" />
-                                                        {highlightNews[0].views} views
-                                                    </span>
                                                 </div>
                                                 <Link
                                                     href={`/berita/${highlightNews[0].slug}`}
@@ -178,7 +174,9 @@ export default function NewsPage({ news, newsCategory }: NewsPageProps) {
                                             <SelectValue placeholder="Pilih Kategori" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="all">Semua</SelectItem>
+                                            <SelectItem value="all" className="p-4">
+                                                Semua
+                                            </SelectItem>
                                             {newsCategory.map((cat) => (
                                                 <SelectItem key={cat.id} value={String(cat.id)} className="cursor-pointer p-4">
                                                     {cat.name}
@@ -187,20 +185,20 @@ export default function NewsPage({ news, newsCategory }: NewsPageProps) {
                                         </SelectContent>
                                     </Select>
 
-                                    {/* Sort berdasarkan views */}
-                                    <Select value={sortOrder} onValueChange={(value) => setSortOrder(value as 'none' | 'asc' | 'desc')}>
+                                    {/* Sort berdasarkan tanggal */}
+                                    <Select value={sortOrder} onValueChange={(value) => setSortOrder(value as 'none' | 'date-asc' | 'date-desc')}>
                                         <SelectTrigger className="w-full rounded-md border-gray-300 bg-white/80 py-5 shadow-none dark:border-gray-700 dark:bg-gray-900/50">
-                                            <SelectValue placeholder="Urutkan Berdasarkan Views" />
+                                            <SelectValue placeholder="Urutkan Berdasarkan Tanggal" />
                                         </SelectTrigger>
                                         <SelectContent>
                                             <SelectItem value="none" className="cursor-pointer p-4">
                                                 Tanpa Urutan
                                             </SelectItem>
-                                            <SelectItem value="desc" className="cursor-pointer p-4">
-                                                Paling Banyak Dilihat
+                                            <SelectItem value="date-desc" className="cursor-pointer p-4">
+                                                Terbaru
                                             </SelectItem>
-                                            <SelectItem value="asc" className="cursor-pointer p-4">
-                                                Paling Sedikit Dilihat
+                                            <SelectItem value="date-asc" className="cursor-pointer p-4">
+                                                Terlama
                                             </SelectItem>
                                         </SelectContent>
                                     </Select>
@@ -228,10 +226,6 @@ export default function NewsPage({ news, newsCategory }: NewsPageProps) {
                                                         alt={item.title}
                                                         className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105"
                                                     />
-                                                    <div className="absolute right-2 bottom-2 flex items-center gap-1 rounded-full bg-black/50 px-2 py-0.5 text-[10px] text-white backdrop-blur-sm">
-                                                        <Icon icon="mdi:eye-outline" className="h-3 w-3" />
-                                                        {item.views}
-                                                    </div>
                                                     {/* Badge kategori */}
                                                     <span className="absolute top-2 left-2 rounded-full bg-blue-600 px-2 py-0.5 text-[10px] font-medium text-white shadow-none">
                                                         {item.news_category?.name}
