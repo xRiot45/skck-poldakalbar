@@ -1,3 +1,4 @@
+import NewsCard from '@/components/news-card';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -213,35 +214,7 @@ export default function NewsPage({ news, newsCategory }: NewsPageProps) {
                                 ) : (
                                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                                         {filteredNews.map((item, index) => (
-                                            <motion.div
-                                                key={item.id}
-                                                initial={{ opacity: 0, y: 20 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                transition={{ delay: index * 0.1, duration: 0.4 }}
-                                                className="group cursor-pointer overflow-hidden rounded-xl border border-gray-200 transition dark:border-gray-700"
-                                            >
-                                                <div className="relative">
-                                                    <img
-                                                        src={item.thumbnail}
-                                                        alt={item.title}
-                                                        className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                                    />
-                                                    {/* Badge kategori */}
-                                                    <span className="absolute top-2 left-2 rounded-full bg-blue-600 px-2 py-0.5 text-[10px] font-medium text-white shadow-none">
-                                                        {item.news_category?.name}
-                                                    </span>
-                                                </div>
-                                                <div className="bg-white p-3 dark:bg-gray-900">
-                                                    <Link href={`/berita/${item.slug}`} className="block">
-                                                        <h4 className="line-clamp-2 text-sm font-semibold text-gray-900 dark:text-white">
-                                                            {item.title}
-                                                        </h4>
-                                                    </Link>
-                                                    <span className="mt-1 block text-xs text-gray-500 dark:text-gray-400">
-                                                        {formatDate(item.created_at)}
-                                                    </span>
-                                                </div>
-                                            </motion.div>
+                                            <NewsCard key={item.id} item={item} index={index} />
                                         ))}
                                     </div>
                                 )}

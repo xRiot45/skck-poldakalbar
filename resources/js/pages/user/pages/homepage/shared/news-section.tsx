@@ -1,3 +1,4 @@
+import NewsCard from '@/components/news-card';
 import { Button } from '@/components/ui/button';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { News } from '@/models/news-management/news';
@@ -123,35 +124,8 @@ export default function NewsSection({ news }: NewsSectionProps) {
                     >
                         <CarouselContent>
                             {news.map((item, index) => (
-                                <CarouselItem
-                                    key={item.id}
-                                    className="basis-1/2 cursor-pointer md:basis-1/4"
-                                    onClick={() => setHighlight(item)} // ubah highlight saat thumbnail diklik
-                                >
-                                    <motion.div
-                                        key={item.id}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: index * 0.1, duration: 0.4 }}
-                                        className="group cursor-pointer overflow-hidden rounded-xl border border-gray-200 text-start transition dark:border-gray-700"
-                                    >
-                                        <div className="relative">
-                                            <img
-                                                src={item.thumbnail ?? ''}
-                                                alt={item.title}
-                                                className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                            />
-                                            <span className="absolute top-2 left-2 rounded-full bg-blue-600 px-2 py-0.5 text-[10px] font-medium text-white shadow-md">
-                                                {item.news_category?.name}
-                                            </span>
-                                        </div>
-                                        <div className="bg-white p-3 dark:bg-gray-900">
-                                            <span className="mt-1 block text-xs text-gray-500 dark:text-gray-400">{formatDate(item.created_at)}</span>
-                                            <Link href={`/berita/${item.slug}`} className="mt-2 block">
-                                                <h4 className="line-clamp-2 text-sm font-semibold text-gray-900 dark:text-white">{item.title}</h4>
-                                            </Link>
-                                        </div>
-                                    </motion.div>
+                                <CarouselItem key={item.id} className="basis-1/2 cursor-pointer md:basis-1/4" onClick={() => setHighlight(item)}>
+                                    <NewsCard key={item.id} item={item} index={index} />
                                 </CarouselItem>
                             ))}
                         </CarouselContent>
