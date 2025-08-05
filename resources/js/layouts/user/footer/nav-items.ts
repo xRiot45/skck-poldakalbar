@@ -28,7 +28,7 @@ export const FOOTER_CONTACT = [
     { label: 'Jl. Jenderal Ahmad Yani No. 1, Pontianak, Kalimantan Barat' },
     { label: 'Telepon: (0561) 123456' },
     { label: 'Email: intelkam@poldakalbar.go.id' },
-    { label: 'Jam Operasional: Senin - Jumat, 08.00 - 16.00 WIB' },
+    { label: 'Jam Operasional: Senin - Jumat, 08.00 - 14.30 WIB' },
 ];
 
 export const FOOTER_SOCIALS = [
