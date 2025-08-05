@@ -4,17 +4,41 @@ import { News } from '@/models/news-management/news';
 import { formatDate } from '@/utils/format-date';
 import { Link } from '@inertiajs/react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface NewsSectionProps {
     news: News[];
 }
 
 export default function NewsSection({ news }: NewsSectionProps) {
-    // Cari berita yang memiliki is_highlight true, jika tidak ada fallback ke berita pertama
-    const highlightNews = news.find((item) => item.is_highlight === true) || news[0];
+    const [highlight, setHighlight] = useState<News | null>(null);
 
-    const [highlight, setHighlight] = useState(highlightNews);
+    useEffect(() => {
+        if (news && news.length > 0) {
+            const highlightNews = news.find((item) => item.is_highlight) || news[0];
+            setHighlight(highlightNews);
+        } else {
+            setHighlight(null);
+        }
+    }, [news]);
+
+    // Fallback jika tidak ada data
+    if (!news || news.length === 0) {
+        return (
+            <section className="relative w-full overflow-hidden py-20 dark:bg-gray-900">
+                <div className="mx-auto max-w-7xl px-4 text-center">
+                    <h2 className="mb-4 text-4xl font-extrabold text-gray-900 dark:text-white">
+                        <span className="bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">Berita</span> Terbaru
+                    </h2>
+                    <p className="text-lg text-gray-600 dark:text-gray-400">Belum ada berita yang tersedia saat ini.</p>
+                </div>
+            </section>
+        );
+    }
+
+    if (!highlight) {
+        return null; // Atau tampilkan skeleton loading
+    }
 
     return (
         <AnimatePresence>
@@ -66,8 +90,8 @@ export default function NewsSection({ news }: NewsSectionProps) {
                             className="relative mx-auto max-w-7xl overflow-hidden rounded-xl shadow-none"
                         >
                             <img
-                                src={highlight.thumbnail}
-                                alt={highlight.title}
+                                src={highlight?.thumbnail ?? ''}
+                                alt={highlight?.title ?? ''}
                                 className="h-[420px] w-full object-cover transition-transform duration-700 hover:scale-105"
                             />
                             {/* Overlay */}
@@ -80,10 +104,6 @@ export default function NewsSection({ news }: NewsSectionProps) {
                                 <h3 className="text-3xl font-bold">{highlight.title}</h3>
                                 <div className="mt-4 flex items-center gap-4 text-xs text-gray-300">
                                     <span>{formatDate(highlight.created_at)}</span>
-                                    {/* <span className="flex items-center gap-1">
-                                        <Icon icon="mdi:eye-outline" className="h-4 w-4" />
-                                        {highlight.views} views
-                                    </span> */}
                                 </div>
 
                                 <Link href={`/berita/${highlight.slug}`}>
@@ -117,15 +137,10 @@ export default function NewsSection({ news }: NewsSectionProps) {
                                     >
                                         <div className="relative">
                                             <img
-                                                src={item.thumbnail}
+                                                src={item.thumbnail ?? ''}
                                                 alt={item.title}
                                                 className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105"
                                             />
-                                            {/* <div className="absolute right-2 bottom-2 flex items-center gap-1 rounded-full bg-black/50 px-2 py-0.5 text-[10px] text-white backdrop-blur-sm">
-                                                <Icon icon="mdi:eye-outline" className="h-3 w-3" />
-                                                {item.views}
-                                            </div> */}
-                                            {/* Badge kategori animasi */}
                                             <span className="absolute top-2 left-2 rounded-full bg-blue-600 px-2 py-0.5 text-[10px] font-medium text-white shadow-md">
                                                 {item.news_category?.name}
                                             </span>

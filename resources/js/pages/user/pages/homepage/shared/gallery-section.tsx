@@ -42,43 +42,47 @@ export default function GallerySection({ galleries }: GallerySectionProps) {
 
                 {/* Masonry Gallery */}
                 <div className="columns-1 gap-3 space-y-3 sm:columns-2 md:columns-2 lg:columns-3">
-                    {galleries.map((item, index) => (
-                        <motion.div
-                            key={item.id}
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1, duration: 0.5 }}
-                            className="group relative cursor-pointer break-inside-avoid overflow-hidden rounded-xl shadow-lg"
-                            onClick={() => handleOpenModal(item.image, item.title)}
-                            whileHover={{ scale: 1.02 }}
-                        >
-                            {/* Gambar dengan motion */}
-                            <motion.img
-                                src={item.image}
-                                alt={item.title}
-                                className="w-full rounded-md object-cover transition-transform duration-500 group-hover:scale-110"
-                                whileHover={{ scale: 1.05 }}
-                                transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-                            />
-
-                            {/* Overlay + Title */}
+                    {galleries && galleries.length > 0 ? (
+                        galleries.map((item, index) => (
                             <motion.div
-                                className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent opacity-0 transition-opacity group-hover:opacity-100"
-                                initial={{ opacity: 0 }}
-                                whileHover={{ opacity: 1 }}
+                                key={item.id}
+                                initial={{ opacity: 0, y: 50 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1, duration: 0.5 }}
+                                className="group relative cursor-pointer break-inside-avoid overflow-hidden rounded-xl shadow-lg"
+                                onClick={() => handleOpenModal(item.image, item.title)}
+                                whileHover={{ scale: 1.02 }}
                             >
-                                <motion.p
-                                    initial={{ y: 20, opacity: 0 }}
-                                    whileHover={{ y: 0, opacity: 1 }}
-                                    transition={{ duration: 0.3 }}
-                                    className="w-full p-6 text-start text-sm font-medium text-white"
+                                {/* Gambar dengan motion */}
+                                <motion.img
+                                    src={item.image}
+                                    alt={item.title}
+                                    className="w-full rounded-md object-cover transition-transform duration-500 group-hover:scale-110"
+                                    whileHover={{ scale: 1.05 }}
+                                    transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+                                />
+
+                                {/* Overlay + Title */}
+                                <motion.div
+                                    className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+                                    initial={{ opacity: 0 }}
+                                    whileHover={{ opacity: 1 }}
                                 >
-                                    {item.title}
-                                </motion.p>
+                                    <motion.p
+                                        initial={{ y: 20, opacity: 0 }}
+                                        whileHover={{ y: 0, opacity: 1 }}
+                                        transition={{ duration: 0.3 }}
+                                        className="w-full p-6 text-start text-sm font-medium text-white"
+                                    >
+                                        {item.title}
+                                    </motion.p>
+                                </motion.div>
                             </motion.div>
-                        </motion.div>
-                    ))}
+                        ))
+                    ) : (
+                        <p className="col-span-full text-center text-gray-500 dark:text-gray-400">Tidak ada galeri saat ini.</p>
+                    )}
                 </div>
 
                 {/* Tombol Lihat Semua */}
