@@ -1,8 +1,7 @@
-import { Footer } from '@/components/footer';
-import NavbarV3 from '@/components/navbar/navbar3';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import UserLayout from '@/layouts/user';
 import { News } from '@/models/news-management/news';
 import { NewsCategory } from '@/models/news-management/news-category';
 import { formatDate } from '@/utils/format-date';
@@ -17,7 +16,6 @@ interface NewsPageProps {
 }
 
 export default function NewsPage({ news, newsCategory }: NewsPageProps) {
-    console.log(news);
     const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
     const [searchQuery, setSearchQuery] = useState('');
     const [sortOrder, setSortOrder] = useState<'none' | 'asc' | 'desc'>('none');
@@ -37,8 +35,7 @@ export default function NewsPage({ news, newsCategory }: NewsPageProps) {
     const highlightNews = news.filter((item) => item.is_highlight);
 
     return (
-        <>
-            <NavbarV3 />
+        <UserLayout>
             <section>
                 {/* Hero Section */}
                 <div className="relative overflow-hidden bg-gray-950 text-white">
@@ -259,8 +256,6 @@ export default function NewsPage({ news, newsCategory }: NewsPageProps) {
                     </div>
                 </motion.section>
             </section>
-
-            <Footer />
-        </>
+        </UserLayout>
     );
 }

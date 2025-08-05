@@ -22,7 +22,6 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 export default function GalleriesPage({ galleries }: GalleriesPageProps) {
-    console.log(galleries);
     return (
         <SuperAdminLayout breadcrumbs={breadcrumbs}>
             <Head title="Galeri" />

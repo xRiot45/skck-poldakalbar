@@ -1,6 +1,5 @@
-import { Footer } from '@/components/footer';
-import NavbarV3 from '@/components/navbar/navbar3';
 import { Card, CardContent } from '@/components/ui/card';
+import UserLayout from '@/layouts/user';
 import { News } from '@/models/news-management/news';
 import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
@@ -11,9 +10,7 @@ interface NewsDetailProps {
 
 export default function NewsDetail({ news }: NewsDetailProps) {
     return (
-        <>
-            <NavbarV3 />
-
+        <UserLayout>
             {/* Hero Section (Gelap) */}
             <div className="relative overflow-hidden bg-gray-950 text-white">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(56,189,248,0.3),transparent_70%)]" />
@@ -123,8 +120,6 @@ export default function NewsDetail({ news }: NewsDetailProps) {
                     </div>
                 </div>
             </main>
-
-            <Footer />
-        </>
+        </UserLayout>
     );
 }
