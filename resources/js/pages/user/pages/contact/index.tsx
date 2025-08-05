@@ -1,11 +1,10 @@
-import { Footer } from '@/components/footer';
 import InputError from '@/components/input-error';
-import NavbarV3 from '@/components/navbar/navbar3';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import UserLayout from '@/layouts/user';
 import { cn } from '@/lib/utils';
 import { Icon } from '@iconify/react';
 import { useForm } from '@inertiajs/react';
@@ -67,8 +66,7 @@ export default function ContactPage() {
     };
 
     return (
-        <>
-            <NavbarV3 />
+        <UserLayout>
             <section className="min-h-screen transition-colors duration-500 dark:bg-gray-900/90">
                 <div className="relative overflow-hidden bg-gray-950 text-white">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(56,189,248,0.3),transparent_70%)]" />
@@ -235,7 +233,6 @@ export default function ContactPage() {
                     </motion.div>
                 </div>
             </section>
-            <Footer />
-        </>
+        </UserLayout>
     );
 }
