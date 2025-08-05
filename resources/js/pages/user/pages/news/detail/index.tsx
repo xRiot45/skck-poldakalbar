@@ -1,7 +1,8 @@
+import ShareModal from '@/components/share-modal';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import UserLayout from '@/layouts/user';
 import { News } from '@/models/news-management/news';
+import { formatDate } from '@/utils/format-date';
 import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
 
@@ -38,85 +39,71 @@ export default function NewsDetail({ news }: NewsDetailProps) {
             </div>
 
             {/* Body Content */}
-            <main className="bg-white text-gray-900 transition-colors duration-300 dark:bg-gray-950 dark:text-white">
-                <div className="mx-auto max-w-5xl px-4 py-10">
-                    <Card className="overflow-hidden border border-none border-gray-200 shadow-none transition-colors dark:border-gray-800 dark:bg-gray-950">
-                        {/* Thumbnail di Dalam Card */}
-                        {news?.thumbnail && (
-                            <motion.div
-                                initial={{ opacity: 0, scale: 1.05 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.6 }}
-                                className="relative h-full w-full overflow-hidden"
-                            >
-                                <img
-                                    src={news.thumbnail}
-                                    alt={news.title}
-                                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-                                />
-                            </motion.div>
-                        )}
-
-                        <CardContent className="p-6">
-                            {/* Title */}
-                            <motion.h1
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6 }}
-                                className="mb-4 text-3xl leading-tight font-extrabold sm:text-4xl md:text-5xl"
-                            >
-                                {news?.title}
-                            </motion.h1>
-
-                            {/* Meta Info */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.2, duration: 0.5 }}
-                                className="mb-6 flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400"
-                            >
-                                <div className="flex items-center gap-2">
-                                    <Icon icon="mdi:tag-outline" className="h-4 w-4" />
-                                    <span>{news?.news_category?.name || 'Tanpa Kategori'}</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Icon icon="mdi:calendar" className="h-4 w-4" />
-                                    <span>
-                                        {new Date(news?.created_at).toLocaleDateString('id-ID', {
-                                            day: 'numeric',
-                                            month: 'long',
-                                            year: 'numeric',
-                                        })}
-                                    </span>
-                                </div>
-                            </motion.div>
-
-                            {/* Konten Berita */}
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ duration: 0.5 }}
-                                className="prose max-w-none text-justify prose-gray dark:prose-invert"
-                                dangerouslySetInnerHTML={{ __html: news?.content || '' }}
-                            />
-                        </CardContent>
-                    </Card>
-
-                    {/* Action Buttons */}
-                    <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
-                        <Button
-                            onClick={() => window.history.back()}
-                            className="flex cursor-pointer items-center gap-2 rounded-full border border-gray-300 bg-transparent px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
+            <main className="mt-10 bg-white text-gray-900 transition-colors duration-300 dark:bg-gray-950 dark:text-gray-100">
+                <div className="mx-auto max-w-5xl">
+                    {/* Thumbnail Header */}
+                    {news?.thumbnail && (
+                        <motion.div
+                            initial={{ opacity: 0, scale: 1.02 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6 }}
+                            className="relative h-full w-full overflow-hidden"
                         >
-                            <Icon icon="mdi:arrow-left" className="h-4 w-4" />
-                            Kembali
-                        </Button>
+                            <img src={news.thumbnail} alt={news.title} className="h-full w-full object-cover" />
+                        </motion.div>
+                    )}
 
-                        <div className="flex gap-3">
-                            <button className="flex items-center gap-2 rounded-full border border-gray-300 bg-transparent px-3 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800">
-                                <Icon icon="mdi:share-variant" className="h-4 w-4" />
-                                Bagikan
-                            </button>
+                    {/* Content Container */}
+                    <div className="px-4 sm:px-6 lg:px-8">
+                        {/* Title */}
+                        <motion.h1
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="mt-8 text-3xl leading-tight font-extrabold sm:text-4xl md:text-5xl"
+                        >
+                            {news?.title}
+                        </motion.h1>
+
+                        {/* Meta Info */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.1, duration: 0.5 }}
+                            className="mt-4 flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400"
+                        >
+                            {/* Category */}
+                            <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300">
+                                {news?.news_category?.name || 'Tanpa Kategori'}
+                            </span>
+
+                            {/* Date */}
+                            <div className="flex items-center gap-2">
+                                <Icon icon="mdi:calendar" className="h-4 w-4" />
+                                <span>{formatDate(news?.created_at)}</span>
+                            </div>
+                        </motion.div>
+
+                        {/* Content */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.4 }}
+                            className="prose max-w-none py-8 text-justify text-lg leading-relaxed prose-gray dark:prose-invert"
+                            dangerouslySetInnerHTML={{ __html: news?.content || '' }}
+                        />
+
+                        {/* Action Buttons */}
+                        <div className="mt-8 mb-12 flex justify-between">
+                            <Button
+                                onClick={() => window.history.back()}
+                                className="flex items-center gap-2 rounded-full border border-gray-300 bg-transparent px-5 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
+                            >
+                                <Icon icon="mdi:arrow-left" className="h-4 w-4" />
+                                Kembali
+                            </Button>
+
+                            <ShareModal news={news} />
                         </div>
                     </div>
                 </div>
