@@ -1,6 +1,5 @@
-import { Footer } from '@/components/footer';
-import NavbarV3 from '@/components/navbar/navbar3';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
+import UserLayout from '@/layouts/user';
 import { Gallery } from '@/models/gallery-management/gallery';
 import { GalleryCategory } from '@/models/gallery-management/gallery-category';
 import { Icon } from '@iconify/react';
@@ -17,10 +16,8 @@ export default function GalleryPage({ galleries, galleryCategory }: GalleryPageP
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [selectedTitle, setSelectedTitle] = useState<string | null>(null);
 
-    // Gunakan null untuk 'semua'
     const [activeFilter, setActiveFilter] = useState<number | null>(null);
 
-    // Filter pakai gallery_category_id karena data yang dikirim bukan object gallery_category
     const filteredItems = activeFilter === null ? galleries : galleries.filter((item) => item.gallery_category_id === activeFilter);
 
     const handleOpenModal = (image: string, title: string) => {
@@ -30,8 +27,7 @@ export default function GalleryPage({ galleries, galleryCategory }: GalleryPageP
     };
 
     return (
-        <>
-            <NavbarV3 />
+        <UserLayout>
             <section className="dark:bg-gray-900/90">
                 {/* Banner */}
                 <div className="relative overflow-hidden bg-gray-950 text-white">
@@ -175,7 +171,6 @@ export default function GalleryPage({ galleries, galleryCategory }: GalleryPageP
                     </DialogContent>
                 </Dialog>
             </section>
-            <Footer />
-        </>
+        </UserLayout>
     );
 }
