@@ -1,6 +1,5 @@
-import { Footer } from '@/components/footer';
-import NavbarV3 from '@/components/navbar/navbar3';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import UserLayout from '@/layouts/user';
 import { Mission } from '@/models/profile-management/mission';
 import { Vision } from '@/models/profile-management/vision';
 import { Icon } from '@iconify/react';
@@ -13,8 +12,7 @@ interface VisionMissionPageProps {
 
 export default function VisionMissionPage({ visions, missions }: VisionMissionPageProps) {
     return (
-        <>
-            <NavbarV3 />
+        <UserLayout>
             <section className="min-h-screen bg-background text-foreground transition-colors duration-300 dark:bg-gray-900/90">
                 {/* Banner */}
                 <div className="relative bg-gradient-to-b from-gray-950 via-black to-gray-900 py-20 text-center text-white">
@@ -100,7 +98,6 @@ export default function VisionMissionPage({ visions, missions }: VisionMissionPa
                     </motion.div>
                 </div>
             </section>
-            <Footer />
-        </>
+        </UserLayout>
     );
 }
