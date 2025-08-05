@@ -199,7 +199,6 @@ export default function FormPage({ gallery }: { gallery: Gallery }) {
                         error={errors.image}
                         initialImage={data.image instanceof File ? undefined : data.image}
                     />
-                    <InputError message={errors.image} className="mt-2" />
                 </div>
 
                 <div className="mt-4 flex justify-end space-x-3">
