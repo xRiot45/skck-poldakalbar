@@ -1,7 +1,6 @@
-import { Footer } from '@/components/footer';
-import NavbarV3 from '@/components/navbar/navbar3';
 import ProsedurSendakModal from '@/components/prosedur-sendak-modal';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import UserLayout from '@/layouts/user';
 import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
 
@@ -62,8 +61,7 @@ const senpiTimeline = [
 
 export default function SendakPage() {
     return (
-        <>
-            <NavbarV3 />
+        <UserLayout>
             <section className="bg-background text-foreground dark:bg-gray-900/90">
                 {/* HERO */}
                 <div className="relative overflow-hidden bg-gray-950 text-white">
@@ -134,8 +132,6 @@ export default function SendakPage() {
                     <ProsedurSendakModal />
                 </div>
             </section>
-
-            <Footer />
-        </>
+        </UserLayout>
     );
 }
