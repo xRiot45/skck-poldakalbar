@@ -1,7 +1,6 @@
-import { Footer } from '@/components/footer';
-import NavbarV3 from '@/components/navbar/navbar3';
 import ProsedurIzinKeramaianModal from '@/components/prosedur-izin-keramaian-modal';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import UserLayout from '@/layouts/user';
 import { Icon } from '@iconify/react';
 import { motion } from 'framer-motion';
 
@@ -67,8 +66,7 @@ const persyaratanIzin = [
 
 export default function IzinKeramaianPage() {
     return (
-        <>
-            <NavbarV3 />
+        <UserLayout>
             <section className="bg-background text-foreground dark:bg-gray-900/90">
                 {/* HERO */}
                 <div className="relative overflow-hidden bg-gray-950 text-white">
@@ -162,8 +160,6 @@ export default function IzinKeramaianPage() {
                     </Card>
                 </div>
             </section>
-
-            <Footer />
-        </>
+        </UserLayout>
     );
 }
