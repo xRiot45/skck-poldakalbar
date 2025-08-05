@@ -50,16 +50,6 @@ const Footer = () => {
                             </li>
                         ))}
                     </ul>
-                    {/* <div className="mt-4">
-                        <iframe
-                            src={FOOTER_MAP}
-                            width="100%"
-                            height="120"
-                            allowFullScreen
-                            loading="lazy"
-                            className="rounded-lg border border-gray-700"
-                        ></iframe>
-                    </div> */}
                 </div>
             </div>
 

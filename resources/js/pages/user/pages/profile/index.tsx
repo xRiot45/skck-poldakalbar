@@ -1,7 +1,6 @@
 import LogoIcon from '@/assets/images/logo_1.png';
-import { Footer } from '@/components/footer';
-import NavbarV3 from '@/components/navbar/navbar3';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import UserLayout from '@/layouts/user';
 import { OrganizationalFunction } from '@/models/profile-management/organizational-function';
 import { Task } from '@/models/profile-management/task';
 import { Icon } from '@iconify/react';
@@ -14,8 +13,7 @@ interface ProfilePageProps {
 
 export default function ProfilePage({ tasks, organizationalFunctions }: ProfilePageProps) {
     return (
-        <>
-            <NavbarV3 />
+        <UserLayout>
             <section className="bg-white text-gray-900 dark:bg-gray-900/90 dark:text-white">
                 {/* HERO - Banner Tetap Gelap */}
                 <div className="relative overflow-hidden bg-gray-950 text-white">
@@ -104,8 +102,6 @@ export default function ProfilePage({ tasks, organizationalFunctions }: ProfileP
                     </motion.div>
                 </div>
             </section>
-
-            <Footer />
-        </>
+        </UserLayout>
     );
 }
