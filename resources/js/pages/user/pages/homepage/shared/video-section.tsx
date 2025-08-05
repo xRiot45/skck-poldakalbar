@@ -64,7 +64,7 @@ export default function VideoSection({ videos }: VideoSectionProps) {
                                         {selectedVideo.video_category?.name}
                                     </Badge>
                                     <h3 className="mb-2 text-2xl font-bold text-white drop-shadow-lg">{selectedVideo.title}</h3>
-                                    <p className="mb-3 text-sm text-gray-200">{selectedVideo.description}</p>
+                                    <p className="mb-3 line-clamp-2 text-sm text-gray-200">{selectedVideo.description}</p>
                                     <div className="flex items-center gap-4">
                                         <span className="flex items-center text-sm text-gray-300">
                                             <Icon icon="mdi:clock-outline" className="mr-1 h-4 w-4" />
