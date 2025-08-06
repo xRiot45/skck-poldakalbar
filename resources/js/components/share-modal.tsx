@@ -26,7 +26,7 @@ export default function ShareModal({ news }: { news: News }) {
             </DialogTrigger>
 
             {/* Modal Content */}
-            <DialogContent className="sm:max-w-3xl">
+            <DialogContent className="sm:max-w-xl">
                 <DialogHeader>
                     <DialogTitle className="text-start text-lg font-semibold">Bagikan Berita</DialogTitle>
                     <DialogDescription className="text-start">Salin tautan atau bagikan ke media sosial</DialogDescription>
@@ -41,7 +41,7 @@ export default function ShareModal({ news }: { news: News }) {
                 </div>
 
                 {/* Social Share Buttons */}
-                <div className="mt-5 flex justify-center gap-6">
+                <div className="mx-auto mt-5 grid grid-cols-3 justify-items-center gap-6">
                     {/* WhatsApp */}
                     <a
                         href={`https://wa.me/?text=${encodeURIComponent(news?.title + ' ' + shareUrl)}`}
