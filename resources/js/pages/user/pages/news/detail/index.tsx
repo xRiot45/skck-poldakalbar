@@ -4,6 +4,7 @@ import UserLayout from '@/layouts/user';
 import { News } from '@/models/news-management/news';
 import { formatDate } from '@/utils/format-date';
 import { Icon } from '@iconify/react';
+import DOMPurify from 'dompurify';
 import { motion } from 'framer-motion';
 
 interface NewsDetailProps {
@@ -11,6 +12,8 @@ interface NewsDetailProps {
 }
 
 export default function NewsDetail({ news }: NewsDetailProps) {
+    const cleanNewsContent = DOMPurify.sanitize(news?.content || '');
+
     return (
         <UserLayout>
             {/* Hero Section (Gelap) */}
@@ -90,7 +93,7 @@ export default function NewsDetail({ news }: NewsDetailProps) {
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.4 }}
                             className="prose max-w-none py-8 text-justify text-lg leading-relaxed prose-gray dark:prose-invert"
-                            dangerouslySetInnerHTML={{ __html: news?.content || '' }}
+                            dangerouslySetInnerHTML={{ __html: cleanNewsContent }}
                         />
 
                         {/* Action Buttons */}
