@@ -1,26 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\User\{
-    HomepageController,
-    VisionMissionController,
-    ProfileController
-};
-use App\Http\Controllers\{
-    ContactFormController,
-    DashboardController,
-    GalleryCategoryController,
-    GalleryController,
-    MissionController,
-    NewsCategoryController,
-    NewsController,
-    OrganizationalFunctionController,
-    RoleController,
-    TaskController,
-    VideoCategoryController,
-    VideoController,
-    VisionController
-};
+use App\Http\Controllers\User\{HomepageController, VisionMissionController, ProfileController};
+use App\Http\Controllers\{ContactFormController, DashboardController, GalleryCategoryController, GalleryController, MissionController, NewsCategoryController, NewsController, OrganizationalFunctionController, RoleController, TaskController, VideoCategoryController, VideoController, VisionController};
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +10,7 @@ use App\Http\Controllers\{
 |--------------------------------------------------------------------------
 */
 
-Route::middleware('log.visitor')->group(function () {
+Route::middleware(['log.visitor', 'throttle:60,1'])->group(function () {
     Route::get('/', [HomepageController::class, 'index'])->name('homepage');
     Route::get('/visi-misi', [VisionMissionController::class, 'index'])->name('visi-misi');
     Route::get('/profil', [ProfileController::class, 'index'])->name('profil');
@@ -47,7 +29,9 @@ Route::middleware('log.visitor')->group(function () {
     Route::inertia('/kontak', 'user/pages/contact/index')->name('contact');
 
     // Contact Form
-    Route::post('/contact', [ContactFormController::class, 'store'])->name('contact.store');
+    Route::post('/contact', [ContactFormController::class, 'store'])
+        ->middleware('throttle:5,1')
+        ->name('contact.store');
 });
 
 /*
@@ -56,9 +40,8 @@ Route::middleware('log.visitor')->group(function () {
 |--------------------------------------------------------------------------
 */
 Route::prefix('super-admin')
-    ->middleware(['auth', 'verified', 'role:super-admin'])
+    ->middleware(['auth', 'verified', 'role:super-admin', 'throttle:60,1'])
     ->group(function () {
-
         // Dashboard
         Route::get('/dashboard', [DashboardController::class, 'indexSuperAdmin'])->name('super-admin.dashboard');
 
@@ -85,7 +68,6 @@ Route::prefix('super-admin')
         |-----------------------------
         */
         Route::prefix('profile-management')->group(function () {
-
             // Vision
             Route::prefix('vision')
                 ->controller(VisionController::class)
@@ -141,7 +123,6 @@ Route::prefix('super-admin')
         |-----------------------------
         */
         Route::prefix('gallery-management')->group(function () {
-
             // Gallery Categories
             Route::prefix('gallery-categories')
                 ->controller(GalleryCategoryController::class)
@@ -173,7 +154,6 @@ Route::prefix('super-admin')
         |-----------------------------
         */
         Route::prefix('video-management')->group(function () {
-
             // Video Categories
             Route::prefix('video-categories')
                 ->controller(VideoCategoryController::class)
@@ -205,7 +185,6 @@ Route::prefix('super-admin')
         |-----------------------------
         */
         Route::prefix('news-management')->group(function () {
-
             // News Categories
             Route::prefix('news-categories')
                 ->controller(NewsCategoryController::class)
