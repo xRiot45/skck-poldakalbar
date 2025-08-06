@@ -1,3 +1,4 @@
+import Image from '@/components/image';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import UserLayout from '@/layouts/user';
 import { Gallery } from '@/models/gallery-management/gallery';
@@ -120,13 +121,15 @@ export default function GalleryPage({ galleries, galleryCategory }: GalleryPageP
                                                 whileHover={{ scale: 1.02 }}
                                             >
                                                 {/* Gambar */}
-                                                <motion.img
-                                                    src={item.image}
-                                                    alt={item.title}
-                                                    className="w-full rounded-md object-cover transition-transform duration-500 group-hover:scale-110"
-                                                    whileHover={{ scale: 1.05 }}
-                                                    transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-                                                />
+                                                <div className="aspect-[16/9] w-full">
+                                                    <Image
+                                                        src={item.image}
+                                                        alt={item.title}
+                                                        placeholder={item.title}
+                                                        webp={false}
+                                                        className="w-full rounded-sm object-cover transition-transform duration-500 group-hover:scale-110"
+                                                    />
+                                                </div>
 
                                                 {/* Overlay + Title */}
                                                 <motion.div
