@@ -146,7 +146,7 @@ const Navbar = () => {
                                     />
                                     <div>
                                         <h1 className="text-sm font-bold tracking-wide text-foreground uppercase">Direktorat Intelijen Keamanan</h1>
-                                        <span className="font-bold text-muted-foreground uppercase">Polda Kalbar</span>
+                                        <span className="font-bold uppercase">Polda Kalbar</span>
                                     </div>
                                 </div>
                             </SheetTitle>

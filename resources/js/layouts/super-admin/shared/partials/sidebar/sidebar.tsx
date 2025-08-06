@@ -18,7 +18,8 @@ import { Icon } from '@iconify/react';
 import { Link, usePage } from '@inertiajs/react';
 import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
-import Logo from '../logo';
+
+import Logo from '@/components/ui/logo';
 import mainNavItems from './main-nav-items';
 
 function SidebarGroupContent({ item }: { item: NavItem }) {
