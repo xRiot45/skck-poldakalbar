@@ -6,8 +6,7 @@ import { Head } from '@inertiajs/react';
 import GallerySection from './shared/gallery-section';
 import HeroSection from './shared/hero-section';
 import NewsSection from './shared/news-section';
-import ServiceSection from './shared/service-section';
-import StatisticSection from './shared/statistic-section';
+import PolriAppSection from './shared/polri-app-section';
 import VideoSection from './shared/video-section';
 
 interface HomepageProps {
@@ -22,8 +21,9 @@ export default function Homepage({ galleries, videos, news }: HomepageProps) {
             <Head title="Beranda" />
             <UserLayout>
                 <HeroSection />
-                <ServiceSection />
-                <StatisticSection />
+                <PolriAppSection />
+                {/* <ServiceSection /> */}
+                {/* <StatisticSection /> */}
                 <VideoSection videos={videos} />
                 <GallerySection galleries={galleries} />
                 <NewsSection news={news} />

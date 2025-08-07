@@ -1,11 +1,43 @@
 import Banner from '@/assets/images/banner.png';
+import Banner1 from '@/assets/images/banners/skck/banner-1.png';
+import Banner2 from '@/assets/images/banners/skck/banner-2.png';
+import Banner3 from '@/assets/images/banners/skck/banner-3.png';
+import Banner4 from '@/assets/images/banners/skck/banner-4.png';
+import Banner5 from '@/assets/images/banners/skck/banner-5.png';
+import Banner6 from '@/assets/images/banners/skck/banner-6.png';
 import { Button } from '@/components/ui/button';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Icon } from '@iconify/react';
 import { Link } from '@inertiajs/react';
+import Autoplay from 'embla-carousel-autoplay';
 import { motion } from 'framer-motion';
 import { Clock, FileText, ShieldCheck, Users } from 'lucide-react';
+import { useRef } from 'react';
+
+const prosedurImages = [
+    {
+        image: Banner1,
+    },
+    {
+        image: Banner2,
+    },
+    {
+        image: Banner3,
+    },
+    {
+        image: Banner4,
+    },
+    {
+        image: Banner5,
+    },
+    {
+        image: Banner6,
+    },
+];
 
 export default function HeroSection() {
+    const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
+
     return (
         <section className="relative min-h-screen w-full overflow-hidden py-16 md:py-20">
             {/* Background */}
@@ -16,17 +48,6 @@ export default function HeroSection() {
 
             {/* Content */}
             <div className="relative z-10 mx-auto flex min-h-[calc(100vh-4rem)] max-w-7xl flex-col items-center justify-center px-4 text-center text-white md:px-6">
-                {/* Sub Tagline */}
-                <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="flex rounded-full bg-white/20 px-3 py-1 text-xs font-medium backdrop-blur-md md:px-4 md:py-2 md:text-sm"
-                >
-                    <Icon icon="mdi:check-circle" className="mr-2 h-4 w-4 text-green-400" />
-                    Layanan Resmi & Modern
-                </motion.div>
-
                 {/* Title */}
                 <motion.h1
                     initial={{ opacity: 0, y: 30 }}
@@ -36,6 +57,20 @@ export default function HeroSection() {
                 >
                     Pelayanan Administrasi <br /> Ditintelkam Polda Kalbar
                 </motion.h1>
+
+                <Carousel className="mx-auto mt-20 w-full max-w-screen-xl" plugins={[plugin.current]}>
+                    <CarouselContent>
+                        {prosedurImages.map((banner, index) => (
+                            <CarouselItem key={index} className="w-full sm:basis-1/2 lg:basis-1/3">
+                                <div className={`relative flex h-72 w-full flex-col justify-between overflow-hidden rounded-2xl p-6 text-white`}>
+                                    <img src={banner.image} alt="food" className="absolute top-0 left-0 h-full w-full object-cover" />
+                                </div>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="hidden sm:flex" />
+                    <CarouselNext className="hidden sm:flex" />
+                </Carousel>
 
                 {/* Service Buttons */}
                 <motion.div
@@ -110,26 +145,22 @@ export default function HeroSection() {
                     </a>
                 </motion.div>
 
-                {/* Statistics */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.9, duration: 0.7 }}
-                    className="mt-10 grid grid-cols-3 gap-4 text-xs sm:text-sm md:mt-14 md:gap-6 md:text-base"
-                >
-                    <div>
-                        <p className="text-xl font-bold sm:text-2xl md:text-3xl">+8.000</p>
-                        <p className="text-gray-300">SKCK / Tahun</p>
-                    </div>
-                    <div>
-                        <p className="text-xl font-bold sm:text-2xl md:text-3xl">10 Menit</p>
-                        <p className="text-gray-300">Rata-rata Proses</p>
-                    </div>
-                    <div>
-                        <p className="text-xl font-bold sm:text-2xl md:text-3xl">99%</p>
-                        <p className="text-gray-300">Kepuasan Pemohon</p>
-                    </div>
-                </motion.div>
+                <div className="relative mt-10 overflow-hidden bg-transparent py-2 whitespace-nowrap">
+                    <motion.div
+                        className="inline-block text-2xl font-bold text-white"
+                        animate={{ x: ['100%', '-100%'] }}
+                        transition={{
+                            repeat: Infinity,
+                            duration: 20,
+                            ease: 'linear',
+                        }}
+                    >
+                        <span className="mx-10">
+                            PELAYANAN ADMINISTRASI DIREKTORAT INTELIJEN KEAMANAN POLDA KALBAR DOWNLOAD APLIKASI POLRI PRESISI UNTUK MENDAFTAR SKCK
+                            SECARA ONLINE
+                        </span>
+                    </motion.div>
+                </div>
             </div>
         </section>
     );
